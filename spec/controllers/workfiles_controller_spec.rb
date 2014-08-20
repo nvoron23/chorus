@@ -227,6 +227,14 @@ describe WorkfilesController do
       generate_workfile_fixture(:"alpine_hadoop_dataset_flow", "alpineHdfsDatasetFlow.json")
       generate_workfile_fixture(:multiple_data_source_workflow, "alpineMultiDataSourceFlow.json")
     end
+
+    it 'creates a workfile open event' do
+      expect {
+        get :show, :id => public_workfile
+      }.to change(OpenWorkfileEvent, :count).by(1)
+      OpenWorkfileEvent.last.user.id.should == user.id
+      OpenWorkfileEvent.last.workfile.id.should == public_workfile.id
+    end
   end
 
   describe "#create" do

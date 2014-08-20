@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Dashboard::SiteSnapshot do
 
-  let(:result) { described_class.new.fetch!.result }
+  let(:result) { described_class.new({}).fetch!.result }
 
   it 'has the counts for workfiles' do
     in_the_past { FactoryGirl.create(:workfile) }

@@ -44,5 +44,35 @@ describe DashboardsController do
         get :show, params
       end
     end
+
+    context 'with entity_type recent_workfiles' do
+      let(:entity_type) { 'recent_workfiles' }
+
+      it 'returns 200' do
+        response.should be_ok
+      end
+
+      it 'includes the entity_type' do
+        decoded_response.entity_type.should == entity_type
+      end
+
+      it 'includes the list of recent workfiles for the user' do
+        @ids = Workfile.last(5).map do |workfile|
+          OpenWorkfileEvent.create!(user: user, workfile: workfile)
+          workfile.id
+        end
+
+        get :show, params
+        decoded_response.data.map(&:id).should == @ids
+      end
+
+      generate_fixture 'dashboard/recentWorkfiles.json' do
+        Workfile.last(5).map do |workfile|
+          OpenWorkfileEvent.create!(user: user, workfile: workfile)
+        end
+
+        get :show, params
+      end
+    end
   end
 end

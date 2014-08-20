@@ -1,13 +1,8 @@
 module Dashboard
-  class SiteSnapshot
-    ENTITY_TYPE = 'site_snapshot'
+  class SiteSnapshot < DataModule
     INCREMENT_TIME = 7.days.ago
 
-    attr_accessor :result
-
-    def entity_type
-      ENTITY_TYPE
-    end
+    private
 
     def fetch!
       @result = [Workspace, AssociatedDataset, Workfile, User].map do |model|
@@ -17,11 +12,7 @@ module Dashboard
             :increment => changed_count(model)
         }
       end
-
-      self
     end
-
-    private
 
     def changed_count(model)
       count_created = model.where('"created_at" > ?', INCREMENT_TIME).count
