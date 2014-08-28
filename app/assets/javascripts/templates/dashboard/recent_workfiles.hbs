@@ -1,0 +1,26 @@
+<div class="title">{{t "dashboard.recent_workfiles.name"}}</div>
+<ul>
+    {{#each workfileItems}}
+        <li>
+            <div style="background-color: #d1d1d1; margin-bottom: 4px; padding: 5px;">
+                <div class="image" style="display: inline-block">
+                    <img src="/images/workfiles/large/afm.png"/>
+                </div>
+                <div class="file_name" style="display: inline-block; padding: 3px 0 0 10px; width: 350px;">
+                    <div>
+                        <a style="font-size: 17px;" href='#/workspaces/{{workspace.id}}/workfiles/{{id}}'>{{fileName}}</a>
+                    </div>
+                    <div>
+                        <img src="/images/workspaces/workspace_small.png" style="vertical-align: bottom; width: 25px; padding: 0 5px 2px 0;"/>
+                        <span>
+                            <a style="vertical-align:super;" href='#/workspaces/{{workspace.id}}'>{{workspace.name}}</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="time_edited" style="padding-left: 200px; display: inline-block; vertical-align: top; padding-top: 15px;">
+                    {{relativeTimeStamp}}
+                </div>
+            </div>
+        </li>
+    {{/each}}
+</ul>
