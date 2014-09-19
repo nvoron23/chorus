@@ -24,6 +24,6 @@ describe Dashboard::RecentWorkfiles do
   end
 
   it 'only fetches workfiles opened by the current user' do
-    result.map { |o| o.workfile.id }.should == @ids.last(5)
+    result.map { |o| o.workfile.id }.should == @ids.reverse.first(5)
   end
 end

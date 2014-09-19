@@ -63,7 +63,7 @@ describe DashboardsController do
         end
 
         get :show, params
-        decoded_response.data.map(&:id).should == @ids
+        decoded_response.data.map { |event| event[:workfile][:id] }.should == @ids.reverse
       end
 
       generate_fixture 'dashboard/recentWorkfiles.json' do

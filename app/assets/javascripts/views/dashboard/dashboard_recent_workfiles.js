@@ -4,17 +4,27 @@ chorus.views.DashboardRecentWorkfiles = chorus.views.DashboardModule.extend({
 
     setup: function() {
         this.model = new chorus.models.DashboardData({});
-        this.requiredResources.add(this.model);
         this.model.urlParams = { entityType: 'recent_workfiles' };
-        this.model.fetch();
+        this.model.fetch({
+            success: _.bind(this.fetchComplete, this)
+        });
     },
 
-    additionalContext: function () {
+    fetchComplete: function() {
+        var workfiles = _.map(this.model.get("data"), function(openEvent) {
+            openEvent.workfile.lastOpened = openEvent.lastOpened;
+            return openEvent.workfile;
+        }, this);
+        this.resource = this.collection = new chorus.collections.WorkfileSet(workfiles);
+        this.render();
+    },
+
+    collectionModelContext: function(model) {
         return {
-            workfileItems: _.map(this.model.get("data"), function(item) {
-                item.relativeTimeStamp = Handlebars.helpers.relativeTimestamp(item.userModifiedAt);
-                return item;
-            })
+            iconUrl: model.iconUrl(),
+            showUrl: model.showUrl(),
+            workspaceShowUrl: model.workspace().showUrl(),
+            workspaceIconUrl: model.workspace().defaultIconUrl("small")
         };
     }
 });

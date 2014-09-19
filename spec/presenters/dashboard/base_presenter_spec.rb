@@ -27,8 +27,7 @@ describe Dashboard::BasePresenter, :type => :view do
     end
 
     it 'hash should have attributes' do
-      expected = Presenter.present(model.result.map(&:workfile), view, :list_view => true)
-      hash[:data].should == expected
+      hash[:data].should == model.result
     end
   end
 end

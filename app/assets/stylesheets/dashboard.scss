@@ -86,6 +86,40 @@ div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
         }
     }
 
+    &.dashboard_recent_workfiles {
+        ul li {
+            div {
+                display: inline-block;
+                div {
+                    display: block;
+                }
+            }
+
+            .file_name {
+                padding: 3px 0 0 10px;
+                width: 350px;
+            }
+
+            .workfile_link {
+                font-size: 18px;
+            }
+
+            .workspace_image {
+                vertical-align: bottom;
+                width: 20px;
+                padding-right: 10px;
+            }
+
+            .time_edited {
+                float: right;
+                padding-right: 200px;
+                vertical-align: top;
+                padding-top: 15px;
+                color:#949a9e;
+            }
+        }
+    }
+
     .module_header {
         @include toggle-menus;
         height: $title-height;
