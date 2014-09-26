@@ -40,8 +40,7 @@
     @include tooltip($error-text-color, #B61B1D, #B61B1D);
 
     .ui-tooltip-content {
-        font-size: 16px;
-        line-height: 16px;
+        font-size: 14px;
         max-width: 350px;
     }
 }
@@ -50,7 +49,7 @@
     @include tooltip($error-text-color, #282828, #282828);
 
     .ui-tooltip-content {
-        font-size: 13px;
+        font-size: 14px;
         max-width: 350px;
     }
 }
@@ -62,10 +61,10 @@
         font-size: 12px;
         min-width: 250px;
         max-width: 350px;
-        line-height: 1.2;
+/*         line-height: 1.2; */
 
         .content-bold {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: $semibold;
             margin-top: 2px;
             margin-bottom: 5px;
@@ -101,10 +100,11 @@
 }
 
 .more-info {
-  background-image: url('/images/more-info.png');
-  display: inline-block;
-  height: 12px;
-  width: 12px;
+    background-image: url('/images/more-info.png');
+    background-image: url("/images/messaging/messaging-moreInfo-16x16.svg");
+    display: inline-block;
+    height: 12px;
+    width: 12px;
 }
 
 
