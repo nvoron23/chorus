@@ -48,7 +48,7 @@
 
     chorus.urlHelpers.fileIconUrl = function fileIconUrl(key, size) {
         var fileType = key && key.toLowerCase();
-        var imageName = (map[fileType] || "plain") + ".png";
+        var imageName = (map[fileType] || "plain") + ".svg";
         return "/images/workfiles/" + (size || "large") + "/" + imageName;
     };
 
