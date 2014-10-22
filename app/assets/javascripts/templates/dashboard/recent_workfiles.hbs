@@ -1,24 +1,69 @@
-<div class="title">{{t "dashboard.recent_workfiles.name"}}</div>
-<ul class="list selectable">
-    {{#each models}}
-        <li>
-            <div class="image">
-                <img src="{{iconUrl}}"/>
-            </div>
-            <div class="file_name">
-                <div>
-                    <a class="workfile_link" href='{{showUrl}}'>{{fileName}}</a>
+<div style="position: relative;">
+    <div id="recent_workfiles_main_content">
+        <div class="module_sub_header">
+            <div class="title">{{t "dashboard.recent_workfiles.name"}}</div>
+            <div class="right">
+                <div class="button clear_list">
+                    {{t "dashboard.recent_workfiles.clear.button"}}
                 </div>
-                <div>
-                    <img class="workspace_image" src="{{workspaceIconUrl}}"/>
-                    <span>
-                        <a class="workspace_link" href='{{workspaceShowUrl}}'>{{workspace.name}}</a>
-                    </span>
+                <div class="button configure widget">
+                    <i class="oi" data-glyph="cog"></i>
                 </div>
             </div>
-            <div class="time_edited">
-                {{relativeTimestamp lastOpened}}
+        </div>
+
+        {{#if modelLoaded}}
+            {{#if hasModels}}
+                <ul class="list selectable">
+                    {{#each models}}
+                        <li>
+                            <div class="image">
+                                <img src="{{iconUrl}}"/>
+                            </div>
+                            <div class="file_name">
+                                <div>
+                                    <a class="workfile_link" href='{{showUrl}}'>{{fileName}}</a>
+                                </div>
+                                <div>
+                                    <img class="workspace_image" src="{{workspaceIconUrl}}"/>
+                                    <span>
+                                        <a class="workspace_link" href='{{workspaceShowUrl}}'>{{workspace.name}}</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="time_edited">
+                                {{relativeTimestamp lastOpened}}
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{else}}
+                <div>You do not currently have any recent items.</div>
+            {{/if}}
+        {{/if}}
+    </div>
+    <div id="recent_workfiles_configuration">
+        <div class="mask">
+            <div class="config_content">
+                <div class="title">{{t "dashboard.recent_workfiles.name"}} {{t "dashboard.configuration"}}</div>
+                <div>Number of items to display:</div>
+                <div>
+                    <select class="recent_items_select">
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="button_row">
+                   <span class="left">
+                       <button type="submit" class="submit modalish">{{t "users.button.save_changes"}}</button>
+                       <button type="button" class="cancel modalish">{{t "actions.cancel"}}</button>
+                   </span>
+                </div>
             </div>
-        </li>
-    {{/each}}
-</ul>
+        </div>
+    </div>
+</div>

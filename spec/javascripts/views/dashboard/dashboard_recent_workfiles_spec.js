@@ -32,6 +32,39 @@ describe("chorus.views.DashboardRecentWorkfiles", function() {
                     expect($(element).find(".time_edited")).toContainText(Handlebars.helpers.relativeTimestamp(dataIndex.lastOpened));
                 }, this);
             });
+
+            it("config has dropdown", function() {
+                expect(this.view.$('.recent_items_select')[0].options.length).toBe(6);
+            });
+
+            describe("clicking on config button", function() {
+                beforeEach(function() {
+                    this.view.$(".button.configure").click();
+                });
+
+                it("shows the config screen", function() {
+                    spyOn(this.view.$('#recent_workfiles_configuration'), 'fadeIn');
+                    expect(this.view.$("#recent_workfiles_configuration").css('display')).toBe("block");
+                });
+
+                describe("clicking on save button", function() {
+
+                    it("saves the option", function() {
+                        spyOn(this.view.recentWorkfileModel, 'save');
+                        this.view.$(".submit.modalish").click();
+                        expect(this.view.recentWorkfileModel.save).toHaveBeenCalled();
+                    });
+                });
+            });
+
+            describe("clicking on clear list button", function() {
+
+                it("clears the list", function() {
+                    spyOn(this.view.recentWorkfileModel, 'save');
+                    this.view.$(".button.clear_list").click();
+                    expect(this.view.recentWorkfileModel.save).toHaveBeenCalled();
+                });
+            });
         });
     });
 });

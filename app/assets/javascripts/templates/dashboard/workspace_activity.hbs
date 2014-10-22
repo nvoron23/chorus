@@ -1,4 +1,21 @@
 <div class="title">{{t "dashboard.workspace_activity.name"}}</div>
+<div class="list_header menus">
+    <select class="date_group_filter">
+        <option value="day_7">{{t "dashboard.workspace_activity.date_divisions.day_7" }}</option>
+        <option value="week_4">{{t "dashboard.workspace_activity.date_divisions.week_4" }}</option>
+        <option value="week_12">{{t "dashboard.workspace_activity.date_divisions.week_12" }}</option>
+    </select>
+</div>
 <div>
-    <div class="chart"></div>
+    {{#if hasModels}}
+        <div class="chart"></div>
+    {{else}}
+        <div class="no_activity">
+            {{t "dashboard.workspace_activity.no_activity.text" }}
+        </div>
+        <div class="text_tip">
+            {{t "dashboard.workspace_activity.no_activity.text_tip.text" }}<br><br>
+            <a href="#/workspaces">{{t "dashboard.workspace_activity.no_activity.text_tip.link.text" }}</a>
+        </div>
+    {{/if}}
 </div>

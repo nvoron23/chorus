@@ -52,12 +52,14 @@ class WorkfilesController < ApplicationController
   end
 
   def destroy
+    OpenWorkfileEvent.where(:workfile_id => workfile.id, :user_id => current_user).destroy_all
     workfile.destroy
     render :json => {}
   end
 
   def destroy_multiple
     authorize! :can_edit_sub_objects, workspace
+    OpenWorkfileEvent.where(:workfile_id => params[:workfile_ids], :user_id => current_user).destroy_all
     workfiles = workspace.workfiles.where(:id => params[:workfile_ids])
     workfiles.destroy_all
 

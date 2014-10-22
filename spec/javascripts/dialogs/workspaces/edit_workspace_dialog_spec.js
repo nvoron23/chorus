@@ -163,12 +163,6 @@ describe("chorus.dialogs.EditWorkspace", function() {
             });
         });
 
-        describe("project visibility", function () {
-            it("sets checked status from the value on the model", function () {
-                expect(this.dialog.$('input[name=make_project]').prop('checked')).toBe(this.workspace.get("isProject"));
-            });
-        });
-
         context("when the workspace is public", function() {
             beforeEach(function() {
                 this.workspace.set({ "public": true });
@@ -493,7 +487,6 @@ describe("chorus.dialogs.EditWorkspace", function() {
                             name: "my modified name",
                             summary: "my modified summary",
                             owner_id: '13',
-                            is_project: true,
                             show_sandbox_datasets: false,
                             has_changed_settings: true
                         }));

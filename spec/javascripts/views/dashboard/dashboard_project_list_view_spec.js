@@ -6,7 +6,13 @@ describe("chorus.views.DashboardProjectList", function() {
             owner: { firstName: 'Green', lastName: 'Giant' },
             latestCommentList: [],
             summary: 'We are making sails!',
-            isMember: true
+            isMember: true,
+            datasetsCount: 1,
+            membersCount: 1,
+            workfilesCount: 1,
+            insightsCount: 1,
+            recentInsightsCount: 1,
+            recentCommentsCount: 1
         });
         delete this.workspace1.attributes.latestInsight;
 
@@ -16,7 +22,13 @@ describe("chorus.views.DashboardProjectList", function() {
             owner: { firstName: 'Andre', lastName: 'The Giant' },
             latestCommentList: [],
             numberOfInsights: 1,
-            isMember: false
+            isMember: false,
+            datasetsCount: 2,
+            membersCount: 2,
+            workfilesCount: 2,
+            insightsCount: 2,
+            recentInsightsCount: 2,
+            recentCommentsCount: 2
         });
         delete this.workspace2.attributes.summary;
         spyOn(this.workspace2, 'latestInsight').andReturn(backboneFixtures.activity.insightOnGreenplumDataSource());
@@ -44,45 +56,46 @@ describe("chorus.views.DashboardProjectList", function() {
             expect(this.view.$(".project_name").eq(1).attr('href')).toBe(this.workspace2.showUrl());
         });
 
-        it("displays the name of the owners as a link", function() {
-            expect(this.view.$(".owner").eq(0).text()).toBe("Green Giant");
-            expect(this.view.$(".owner").eq(0).attr('href')).toBe(this.workspace1.owner().showUrl());
+        describe("data row section", function () {
+            it("displays the statistics of each workspace", function() {
+                expect(this.view.$(".data_row.first .left_side .number .insight_link").eq(0).text()).toBe("1");
+                expect(this.view.$(".data_row.first .left_side .number .insight_link").eq(1).text()).toBe("2");
 
-            expect(this.view.$(".owner").eq(1).text()).toBe("Andre The Giant");
-            expect(this.view.$(".owner").eq(1).attr('href')).toBe(this.workspace2.owner().showUrl());
-        });
+                expect(this.view.$(".data_row.first .left_side .element").eq(0).text()).toBe("Insight");
+                expect(this.view.$(".data_row.first .left_side .element").eq(1).text()).toBe("Insights");
 
-        it("shows info icons only for projects with summaries", function () {
-            expect(this.view.$('.info_icon').length).toBe(this.collection.length - 1);
+                expect(this.view.$(".data_row.first .right_side .number .workfile_link").eq(0).text()).toBe("1");
+                expect(this.view.$(".data_row.first .right_side .number .workfile_link").eq(1).text()).toBe("2");
+
+                expect(this.view.$(".data_row.first .right_side .element").eq(0).text()).toBe("Workfile");
+                expect(this.view.$(".data_row.first .right_side .element").eq(1).text()).toBe("Workfiles");
+
+                expect(this.view.$(".data_row.last .left_side .number .dataset_list").eq(0).text()).toBe("1");
+                expect(this.view.$(".data_row.last .left_side .number .dataset_list").eq(1).text()).toBe("2");
+
+                expect(this.view.$(".data_row.last .left_side .element").eq(0).text()).toBe("Dataset");
+                expect(this.view.$(".data_row.last .left_side .element").eq(1).text()).toBe("Datasets");
+
+                expect(this.view.$(".data_row.last .right_side .number .member_list").eq(0).text()).toBe("1");
+                expect(this.view.$(".data_row.last .right_side .number .member_list").eq(1).text()).toBe("2");
+
+                expect(this.view.$(".data_row.last .right_side .element").eq(0).text()).toBe("Member");
+                expect(this.view.$(".data_row.last .right_side .element").eq(1).text()).toBe("Members");
+            });
         });
 
         describe("latest insight section", function () {
-            it("shows the latest insight", function () {
-                var presenter = new chorus.presenters.Activity(this.workspace2.latestInsight());
-                var insightHtml = presenter.headerHtml().string;
-
-                expect(this.view.$('.dashboard_project_card:eq(2) .activity .activity_header')).toContainHtml(insightHtml);
+            it("shows the counts for latest comments and insights", function () {
+                expect(this.view.$(".insight_row .main_row").eq(0).text().trim()).toBe("1 Comment and 1 Insight");
+                expect(this.view.$(".insight_row .main_row").eq(1).text().trim()).toBe("2 Comments and 2 Insights");
             });
 
-            it("does not show an insight if there are no insights", function () {
-                expect(this.view.$('.insight_zone .activity_item').length).toBe(this.collection.length - 1);
-            });
-
-            it("shows a link to all insights if there are more", function () {
-                expect(this.view.$('.dashboard_project_card:eq(0) a.all_insights')).not.toExist();
-
-                expect(this.view.$('.dashboard_project_card:eq(2) a.all_insights').text()).toContainTranslation('project_card.insight.all_insights', {count: 2});
-                expect(this.view.$('.dashboard_project_card:eq(2) a.all_insights').attr('href')).toBe(this.workspace3.showUrl()+'?filter=insights');
-            });
-
-            describe("an activity with comments", function () {
-                it("displays the comment, with no 'read more'", function () {
-                    expect(this.view.$('.truncated_text')).toContainText(this.workspace2.latestInsight().get('body'));
-                    expect(this.view.$('.truncated_text .more')).not.toExist();
-                });
+            it("shows the counts for latest comments and insights", function () {
+                expect(this.view.$(".insight_row .sub_row").eq(0).text().trim()).toBe("in the last 7 days");
             });
         });
 
+        /*
         describe("filtering", function () {
             context("when filter:members_only is triggered on the collection", function () {
                 beforeEach(function () {
@@ -114,5 +127,6 @@ describe("chorus.views.DashboardProjectList", function() {
                 });
             });
         });
+        */
     });
 });

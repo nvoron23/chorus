@@ -4,7 +4,7 @@ describe("chorus.views.ProjectListHeader", function(){
         this.view = new chorus.views.ProjectListHeader({collection: this.collection});
         this.view.render();
     });
-
+    /*
     describe("menu links", function () {
         it("has links for both All and only the User's projects", function () {
             expect(this.view.$(".menus .members_only")).toContainTranslation('workspace.project.filter.members_only');
@@ -55,7 +55,9 @@ describe("chorus.views.ProjectListHeader", function(){
                 expect(this.view.$(".menus .all")).toHaveClass("active");
             });
         });
+
     });
+         */
 
 
 });

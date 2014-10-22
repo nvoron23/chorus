@@ -47,17 +47,12 @@ if (!parseInt(port) || args.length > 2) {
 
 var page = require("webpage").create();
 
-var stdout = fs.open("/dev/stdout", "w");
-var stderr = fs.open("/dev/stderr", "w");
-
 function printError(message) {
-    stderr.write(message + "\n");
-    stderr.flush();
+    console.error(message);
 }
 
 page.onConsoleMessage = function(message) {
-    stdout.write(message);
-    stdout.flush();
+    console.log(message);
 }
 
 var attachedDoneCallback = false;

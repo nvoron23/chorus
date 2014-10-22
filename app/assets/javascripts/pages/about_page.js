@@ -2,10 +2,6 @@ chorus.pages.AboutPage = chorus.pages.Base.extend({
     constructorName: "AboutPage",
     templateName: "about",
     additionalClass: "logged_in_layout",
-    crumbs: [
-        { label:t("breadcrumbs.home"), url:"#/" },
-        { label:t("breadcrumbs.about") }
-    ],
 
     makeModel: function() {
         this.model = this.license = new chorus.models.License();

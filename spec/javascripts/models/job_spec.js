@@ -72,13 +72,30 @@ describe("chorus.models.Job", function () {
     });
 
     describe("#ableToRun", function () {
-        it("is true iff status is idle", function () {
-            var res =_.filter(['enqueued', 'running', 'stopping', 'idle'], function(status) {
-                this.model.set('status', status);
-                return this.model.ableToRun();
-            }, this);
-            expect(res).toEqual(['idle']);
+        context("when there are no tasks", function () {
+            beforeEach(function() {
+                this.model.set('tasks', []);
+            });
+
+            it("is never true", function () {
+                var res =_.filter(['enqueued', 'running', 'stopping', 'idle'], function(status) {
+                    this.model.set('status', status);
+                    return this.model.ableToRun();
+                }, this);
+                expect(res).toEqual([]);
+            });
         });
+
+        context("when there are tasks", function () {
+            it("is true iff status is idle", function () {
+                var res =_.filter(['enqueued', 'running', 'stopping', 'idle'], function(status) {
+                    this.model.set('status', status);
+                    return this.model.ableToRun();
+                }, this);
+                expect(res).toEqual(['idle']);
+            });
+        });
+
     });
 
     describe("#isRunning", function () {

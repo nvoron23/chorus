@@ -27,6 +27,15 @@ chorus.models.Attachment = chorus.models.Base.include(
         return chorus.urlHelpers.fileIconUrl(this.get("type") || this.get("fileType"), options && options.size);
     },
 
+    contentUrl: function() {
+        if (this.get('contentUrl')) {
+            return this.get('contentUrl');
+        }
+        else {
+            return null;
+        }
+    },
+
     downloadUrl:function () {
         return "/attachments/" + this.get("id") + "/download/" ;
     },

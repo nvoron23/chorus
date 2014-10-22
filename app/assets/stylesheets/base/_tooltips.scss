@@ -24,21 +24,28 @@
     // qTip's author explicitly recommends !important for overriding z-index
     // https://github.com/Craga89/qTip2/issues/274
     /*z-index: $body-tooltip-z-index !important;*/
+    
+    box-shadow: $shadow-canon;
 }
 
 .ui-tooltip {
     // qTip's author explicitly recommends !important for overriding z-index
     // https://github.com/Craga89/qTip2/issues/274
     z-index: $tooltip-z-index !important;
+
 }
 
 .tooltip-white {
-    @include tooltip($color-text1, #FFFFFF, #CCC);
+    /* @include tooltip($color-text1, #FFFFFF, #CCCCCC); */
+    @include tooltip($color-text1, #FFFFFF, $border-color);
+    
+    box-shadow: $shadow-canon;
 }
 
 .tooltip-error {
     @include tooltip($error-text-color, #B61B1D, #B61B1D);
-
+    box-shadow: $shadow-canon;
+        
     .ui-tooltip-content {
         font-size: 14px;
         max-width: 350px;
@@ -62,6 +69,7 @@
         min-width: 250px;
         max-width: 350px;
 /*         line-height: 1.2; */
+
 
         .content-bold {
             font-size: 14px;
@@ -106,7 +114,6 @@
     height: 12px;
     width: 12px;
 }
-
 
 .tooltip-tips {
   @include tooltip(white, #282828, #282828);

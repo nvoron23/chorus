@@ -21,7 +21,6 @@ chorus.pages.DatasetShowPage = chorus.pages.Base.include(
         setup: function() {
             this.dataset.fetch();
             this.mainContent = new chorus.views.LoadingSection();
-
             this.handleFetchErrorsFor(this.dataset);
 
             this.listenTo(this.dataset, "loaded", this.datasetLoaded);

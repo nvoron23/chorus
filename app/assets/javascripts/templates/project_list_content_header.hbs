@@ -1,8 +1,9 @@
-<div class="title" title="{{t title}}">{{t title}}</div>
+<div class="title" title="{{t "dashboard.project_card_list.name"}}">{{t "dashboard.project_card_list.name"}}</div>
 <div class="menus">
-    <span>{{t "filter.show"}}</span>
-    <a href="#" class="all{{#if noFilter}} active{{/if}}">{{t "workspace.project.filter.all"}}</a>
-    <span class="separator">|</span>
-    <a href="#"
-       class="members_only{{#unless noFilter}} active{{/unless}}">{{t "workspace.project.filter.members_only"}}</a>
+    <span class="show_text">{{t "filter.show"}}</span>
+    <select class="workspace_filter">
+        <option value="all">{{t "workspace.project.filter.all"}}</option>
+        <option value="members_only">{{t "workspace.project.filter.members_only"}}</option>
+        <option value="most_active">{{t "workspace.project.filter.most_active"}}</option>
+    </select>
 </div>

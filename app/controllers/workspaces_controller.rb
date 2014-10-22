@@ -13,8 +13,16 @@ class WorkspacesController < ApplicationController
 
     workspaces = workspaces.active if params[:active]
     succinct = params[:succinct] == 'true'
-    present paginate(workspaces.includes(succinct ? [:owner] : Workspace.eager_load_associations).order("lower(name) ASC, id")),
-            :presenter_options => {:show_latest_comments => params[:show_latest_comments] == 'true', :succinct => succinct}
+
+    if params[:get_options] == 'most_active'
+      available_workspaces = workspaces.select('*').map(&:id)
+      top_workspace_ids = Events::Base.select('workspace_id, count(*) as event_count').group(:workspace_id).where('workspace_id IN (' + available_workspaces.join(',') + ')').order('event_count desc').limit(10).map(&:workspace_id)
+      present paginate(workspaces.select('*').where('id IN (' + top_workspace_ids.join(',') + ')').includes(succinct ? [:owner] : Workspace.eager_load_associations).order("lower(name) ASC, id")),
+          :presenter_options => {:show_latest_comments => params[:show_latest_comments] == 'true', :succinct => succinct}
+    else
+      present paginate(workspaces.includes(succinct ? [:owner] : Workspace.eager_load_associations).order("lower(name) ASC, id")),
+              :presenter_options => {:show_latest_comments => params[:show_latest_comments] == 'true', :succinct => succinct}
+    end
   end
 
   def create

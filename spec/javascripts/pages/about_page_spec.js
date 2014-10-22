@@ -13,16 +13,6 @@ describe("chorus.pages.AboutPage", function() {
             expect(this.page.$el).toHaveClass("logged_in_layout");
         });
 
-
-        describe("breadcrumbs", function () {
-            it("has Home > License", function () {
-                expect(this.page.$(".breadcrumb:eq(0) a")).toHaveAttr("href", "#/");
-                expect(this.page.$(".breadcrumb:eq(0) a")).toContainTranslation("breadcrumbs.home");
-
-                expect(this.page.$(".breadcrumb:eq(1)")).toContainTranslation("breadcrumbs.about");
-            });
-        });
-
         it("includes the application name", function () {
             expect(this.page.$(".title")).toContainTranslation("about." + this.license.applicationKey());
         });
@@ -38,7 +28,6 @@ describe("chorus.pages.AboutPage", function() {
             it("displays the version info", function () {
                 expect(this.page.$(".version")).toContainText(this.version);
             });
-
         });
     });
 

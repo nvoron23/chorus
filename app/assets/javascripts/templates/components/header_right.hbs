@@ -13,7 +13,6 @@
         <a href="#" class="notifications label">
             <div class="lozenge {{#unless notifications.length}}empty{{/unless}}">{{notifications.pagination.records}}</div>
         </a>
-
         <div class="menu hidden popup_notifications">
             {{> notificationsMenu}}
         </div>
@@ -22,7 +21,7 @@
     {{#if advisorNow}}
         <div class="token advisor_now">
             <a class="label" href="{{advisorNowLink}}" title="Consult with the AdvisorNow Data Scientists..." target="_blank">
-                <img src="/images/advisor_now.png"/>
+                <img width="75" src="/images/advisor_now.png"/>
             </a>
         </div>
     {{/if}}

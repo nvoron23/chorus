@@ -1,7 +1,8 @@
 .data_source_usage {
     li {
         border-bottom: $border-canon;
-        margin-top: 8px;
+        margin-top: 5px;
+        padding-bottom: 5px;
         width: 100%;
 
         .image_container {
@@ -15,9 +16,8 @@
         }
 
         .workspace_link {
-            font-size: 18px;
-            line-height: 1.2;
-            font-weight: $semibold;
+            @include font-primary-link;
+            line-height: 1.4;
         }
 
         .pair {
@@ -45,8 +45,7 @@
     }
 
     .usage_bar {
-        height: 15px;
-        line-height: 15px;
+        height: 16px;
         width: 100%;
         background: $progress-bar-background-color;
         font-size: 12px;
@@ -65,7 +64,7 @@
         float: left;
         display: inline-block;
         background: $link-color;
-        border-right: 1px solid white;
+        border-right: 1px solid #FFFFFF;
 
         .percentage_text {
             float: right;
@@ -73,11 +72,11 @@
             display: inline-block;
             margin-right: 5px;
             margin-top: 1px;
-            color: white;
+            color: #FFFFFF;
         }
 
         .size_text {
-            color: white;
+            color: #FFFFFF;
         }
     }
 

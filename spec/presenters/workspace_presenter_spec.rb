@@ -18,11 +18,12 @@ describe WorkspacePresenter, :type => :view do
 
     it "includes the right keys" do
       keys = [
-          :id, :name, :summary, :archiver, :owner, :archived_at, :public, :image,
-          :permission, :has_added_member, :has_added_workfile, :has_added_sandbox,
-          :has_changed_settings, :sandbox_info, :tags, :show_sandbox_datasets,
-          :is_project, :is_member, :project_status, :project_status_reason,
-          :milestone_count, :milestone_completed_count
+          :id, :name, :is_deleted, :entity_type, :summary, :archived_at, :permission, :public, :datasets_count,
+          :members_count, :workfiles_count, :insights_count, :recent_insights_count, :recent_comments_count,
+          :archiver, :image, :permission, :has_added_member, :has_added_workfile, :has_added_sandbox,
+          :has_changed_settings, :tags, :sandbox_info, :show_sandbox_datasets,
+          :owner, :is_member, :is_project, :project_status, :project_status_reason,
+          :milestone_count, :milestone_completed_count, :project_target_date
       ]
 
       keys.each { |key| hash.should have_key(key) }
@@ -147,6 +148,14 @@ describe WorkspacePresenter, :type => :view do
             :archived_at,
             :permission,
             :public,
+            :datasets_count,
+            :members_count,
+            :workfiles_count,
+            :insights_count,
+            :recent_insights_count,
+            :recent_comments_count,
+            :has_recent_comments,
+            :has_milestones,
             :owner,
             :is_project,
             :is_member,

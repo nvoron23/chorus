@@ -22,7 +22,7 @@ describe("chorus.pages.UserIndexPage", function() {
 
     describe("before the users have loaded", function() {
         it("has the right header title", function() {
-            expect(this.page.$(".content_header h1").text()).toBe("Users");
+            expect(this.page.$(".content_header h1").text()).toMatchTranslation("header.users_list");
         });
 
         it("defaults to first name sorting", function() {

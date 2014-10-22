@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 
     events = events.includes(Events::Base.activity_stream_eager_load_associations)
 
-    present paginate(events.order('events.id DESC')), :presenter_options => {:activity_stream => true, :succinct => true}
+    present paginate(events.order('events.id DESC')), :presenter_options => {:activity_stream => true, :succinct => true, :workfile_as_latest_version => true}
   end
 
   def show

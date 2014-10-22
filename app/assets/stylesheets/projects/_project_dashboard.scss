@@ -1,90 +1,223 @@
 @import "compass/utilities/general/clearfix";
+@import "compass/css3";
+
+$card-border-radius: 3px;
+$card-namelayer_background: $greyish-blue;
+$card-namelayer_background_highlight: darken($greyish-blue, 6%);
+
+$card-progressbar: rgba( desaturate( darken($greyish-blue, 10%), 7% ), 0.6);
+$card-progressbar_highlight: rgba( desaturate(darken($greyish-blue, 17%), 12%), 0.75);
+$card-progressbar_zero: rgba(#C0C0C0, 0.5);
+
+
+@mixin dashboardcard-heading {
+    @include debugging-mixin;
+    font-size: 16px;
+    font-weight: $semibold;
+}
 
 .project_list {
+    .show_text {
+        margin-right: 5px;
+    }
+
+    select, .ui-selectmenu-button .ui-button {
+        display: inline-block;
+    }
+
+    .menus {
+        float: none !important;
+        padding-bottom: 10px;
+    }
+    
+    .dashboard_project_list {
+        margin-left: -10px;
+    }
+    
     .dashboard_project_card {
-        @media (max-width: 1430px) {
-            width: 46%;
+
+        @media (max-width: 1024px) {
+            width: 308px
         }
 
-        @media (min-width: 1431px) and (max-width: 1950px) {
-            width: 31%;
+        @media (min-width: 1025px) and (max-width: 1650px) {
+            width: 23.7555%;
+            min-width: 20%;
         }
 
-        @media (min-width: 1951px) {
-            width: 23%;
+        @media (min-width: 1651px) {
+            width: 19.0%;
+            min-width: 17%;
+            max-width: 25%;
+        }
+
+        &:hover {
+            /* extended set of highlights on hover */
+            border-color: $border-color-darkest;
+            .name_row {     
+                background-color: $card-namelayer_background_highlight;
+                
+                .progress_label {
+                    display: inline-block;
+                }
+            }
+
+            .layer_ambient_progress {
+
+                div[style="width:0%"] {
+                    border-color: $card-progressbar_highlight;
+                    background-color: transparent;
+                }
+                .card {
+                    background-color: $card-progressbar_highlight;
+                }
+            }
+                        
+            .metrics_row, .insight_row {
+                background-color: #F0F5FF;
+            }
+            
+            .name_row *,
+            .layer_ambient_progress .card,
+            .metrics_row,
+            .insight_row {
+                @include transition-duration(1s);
+                @include transition-timing-function(cubic-bezier(0,0,0,1));
+            }
         }
 
         position: relative;
         vertical-align: top;
         display: inline-block;
-        height: 275px;
-        padding: 10px;
-        margin: 5px 5px 5px 5px;
-        box-shadow: $shadow-canon;
+        margin: 0px 0px 10px 10px;
+        border: $border-canon;
+        -moz-border-radius: $card-border-radius;
+        border-radius: $card-border-radius;
 
         li {
             display: block;
         }
 
-        a.all_insights {
-            display: block;
-            margin-top: 4px;
+        .name_row {
+            height: 47px;
+            background-color: $greyish-blue;
+            border-top-left-radius: $card-border-radius;
+            -moz-border-radius-topleft: $card-border-radius;
+            border-top-right-radius: $card-border-radius;
+            -moz-border-radius-topleft: $card-border-radius;
+            overflow: hidden;
         }
 
-        .insight_zone {
-            margin-top: 10px;
-            background-color: white;
-            height: 170px;
+        .layer_name {
+            position: absolute;
+            z-index: 999;
+            top: 9px;
+            left: 10px;
+            /* nearly the whole width in order to effect ellipsis */
+            width: 95%;
         }
-
-        .activity {
-            border-top: 1px dotted black;
-            .activity_item {
-                margin-top: 10px;
-            }
-            .insight_ribbon {
-                left: -17px;
-                top: -19px;
-            }
-        }
-
-        .space_filler {
-            background-color: $shaded-background-color;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            display: table;
-
-            .text {
-                vertical-align: middle;
-                display: table-cell;
-            }
-        }
-
+        
         .project_name {
-            font-size: 24px;
+/*             display: block; */
+            @include font-primary-link;
+/*             font-size: 18px; */
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
-            display: block;
         }
 
-        .info_icon {
-            display: inline;
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            font-size: 15px;
+        .layer_ambient_progress {
+            position: relative;
+            z-index: 1;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            
+            .progress_bar {
+                height: 100%;
+            }
+
+            /* special case  of progress bar: when there are milestones but 0% progress */
+            div.progress_bar[style="width:0%"] {
+                border-right: 5px dotted $card-progressbar;
+                background-color: transparent;
+            }
+            
+            /* normal cases of progress bar: progress > 0% */
+            .card {
+                background-color: $card-progressbar;
+            }
+            
+            &.card_on_track,
+            &.card_needs_attention,
+            &.card_at_risk  { 
+            /* background-color: rgba(100,100,170,0.15); */
+            }
+        }
+   
+        .progress_label {
+            display: none;
+            position: relative;
+            float: right;
+            z-index: 10;
+            right: 10px;
+            top: 30px;
+            @include secondary-text-small;
+            cursor: pointer;
+            
+            a {
+                @include secondary-text-small;
+            }
         }
 
-        .project_status {
-            @include pie-clearfix;
+        .metrics_row {
+            padding: 10px 10px 13px 10px;            
+            border-bottom: $light-gray 1px solid;
         }
 
-        .project_status > div {
-            display: inline;
-            &.facts { float: left; }
-            &.milestones { float: right; }
+        .data_row {
+            .left_side {
+                display: inline-block;
+                width: 50%;
+            }
+            .right_side {
+                display: inline-block;
+            }
+            .number {
+                a {
+                    @include dashboardcard-heading;
+                }
+            }
+            .element {
+                @include font-secondary-content;
+                line-height: 14px;
+                margin-bottom: 6px;
+            }
+        }
+
+        .insight_row {
+            height: 35px;
+            padding: 10px 10px 13px 10px;
+            color: $color-text2;
+            
+            .main_row {
+                @include dashboardcard-heading;
+            }
+            
+            .no_comments_or_anything {
+                font-size: 14px;
+                font-weight: normal;
+                color: $color-text4;
+            }
+            
+            .sub_row {
+                @include secondary-text-small;
+            }
+            
+            .has_recent_comments + .sub_row {
+                color: $color-text2;
+            }
         }
     }
 }

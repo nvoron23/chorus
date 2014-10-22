@@ -78,14 +78,14 @@ $system-action-color: #7C7D7D;
                 background: url(/images/ribbons/label_insight2.png) repeat-x;
                 height: 14px;
                 display: inline-block;
-                padding: 2px 8px 2px 8px;
+                padding: 3px 8px 2px 8px;
                 vertical-align: top;
                 @include uppercase;
             }
 
             .right {
                 background: url(/images/ribbons/label_insight3.png) no-repeat;
-                width: 8px;
+                width: 12px;
                 height: 22px;
                 display: inline-block;
             }
@@ -212,7 +212,7 @@ li .activity_content,
 
         &.insight {
             background: white;
-            border-right: $border-canon;
+/*             border-right: $border-canon; */
             border-bottom: $border-canon;
             .activity_item {
                 padding-top: 12px;
@@ -223,7 +223,7 @@ li .activity_content,
 
 .recent_comments_list {
     .ui-tooltip-content {
-        padding: 10px 0 0 0;
+        padding: 0 0 0 0;
         overflow: visible;
 
         ul.activities {

@@ -138,7 +138,7 @@ chorus.dialogs.MemoNew = chorus.dialogs.Base.include(
     saved: function() {
         this.pageModel.trigger("invalidated");
         this.$("button.submit").stopLoading();
-        this.closeModal();
+        this.closeModal(true);
     },
 
     saveFailed: function() {

@@ -131,7 +131,53 @@ div.dialog {
 }
 
 .dialog.edit_workspace_dialog {
-  width: 580px;
+     width: 580px;
+ }
+
+.dialog.show_image {
+    width: 100%;
+    min-width: 600px;
+
+    .dialog_header {
+        height: 35px;
+        border: none;
+    }
+
+    .workspace_row {
+        background-color: $dialog-header-background;
+        height:25px;
+        border-bottom: 1px solid $border-color;
+
+        .workspace_image {
+            height: 18px;
+            padding-left: 20px;
+            padding-right: 5px;
+            float: left;
+        }
+    }
+
+    .content_space {
+        padding: 10px;
+
+        img {
+            max-width: 1200px;
+        }
+
+        .interactions_row {
+            padding-left: 10px;
+            a {
+                padding-right: 20px;
+            }
+        }
+
+        .image_space {
+            text-align: center;
+
+            .main_image {
+                padding:10px;
+            }
+        }
+    }
 }
 
 .dialog .full_dialog_horizontal {

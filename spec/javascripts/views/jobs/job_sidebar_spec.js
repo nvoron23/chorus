@@ -1,9 +1,6 @@
 describe("chorus.views.JobSidebar", function () {
     beforeEach(function () {
-        this.job = backboneFixtures.jobSet().reject(function (job) {
-            return job.get('intervalUnit') === 'on_demand';
-        })[0];
-
+        this.job = backboneFixtures.job();
         this.view = new chorus.views.JobSidebar({model: this.job});
         this.modalSpy = stubModals();
         this.view.render();
@@ -83,14 +80,14 @@ describe("chorus.views.JobSidebar", function () {
                 });
             });
         });
-    
+
         describe("clicking 'Run Now'", function () {
             beforeEach(function () {
                 spyOn(this.view.model, 'run').andCallThrough();
                 this.view.$('a.run_job').click();
                 this.server.lastCreate().succeed(this.view.model.set('status', 'enqueued'));
             });
-    
+
             it("runs the job", function () {
                 expect(this.view.model.run).toHaveBeenCalled();
             });

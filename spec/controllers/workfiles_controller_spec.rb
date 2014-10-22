@@ -777,6 +777,10 @@ describe WorkfilesController do
       it "should respond with success" do
         response.should be_success
       end
+
+      it "should delete related OpenWorkfileEvent records" do
+        OpenWorkfileEvent.where(:workfile_id => public_workfile.id, :user_id => user.id).count.should == 0
+      end
     end
   end
 
@@ -797,6 +801,8 @@ describe WorkfilesController do
       response.code.should == '200'
 
       workspace.workfiles.reload.count.should == 0
+      OpenWorkfileEvent.where(:workfile_id => workspace.workfiles.map(&:id), :user_id => user.id).count.should == 0
+
     end
 
     it 'preserves existing associations' do

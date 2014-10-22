@@ -1,9 +1,15 @@
 @import "_common";
+@import "components/_button";
 @import "compass/css3/border-radius";
+
+/* height of buttons used for dashboard widget shell */
+/* e.g. configure button */
+$height-button-widgetshell: 25px;
+
 
 div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
     #guts {
-        padding: ($header-height + $subheader-height) 25px 10px 25px;
+        padding: ($header-height + $subheader-height) $page-margin-right 10px $page-margin-left;
     }
 
     #sidebar_wrapper {
@@ -43,10 +49,37 @@ div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
         overflow-y: scroll;
     }
 
+    .no_activity {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #595959;
+        font-family: "Source Sans Pro",Helvetica,Arial,Verdana,sans-serif;
+        font-size: 14pt;
+        font-weight: regular;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+    .text_tip {
+        padding: 15px 10px 20px 10px;
+        min-height: 60px;
+        border: none;
+        border-radius: 3px;
+        background-color: #F0F0E9;
+        color: #595959;
+        font-family: "Source Sans Pro",Helvetica,Arial,Verdana,sans-serif;
+        font-size: 12pt;
+        font-weight: regular;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+/* ****** */
+/* widget: site snapshot */
+
     &.dashboard_site_snapshot {
         ul {
             text-align: center;
-            padding-bottom: 10px;
 
             li {
                 display: inline-block;
@@ -58,7 +91,7 @@ div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
                     height: 160px;
 
                     .total {
-                        padding-top: 20px;
+                        padding-top: 15px;
                         @include dashboard-huge;
                     }
 
@@ -85,6 +118,9 @@ div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
         }
     }
 
+/* ****** */
+/* widget: workspace activity chart */
+
     &.dashboard_workspace_activity {
         .chart {
             text-align: center;
@@ -97,42 +133,73 @@ div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
         }
     }
 
+/* ****** */
+/* widget: recent workfiles */
+
     &.dashboard_recent_workfiles {
-        ul li {
-            div {
-                display: inline-block;
+        #recent_workfiles_main_content {
+            min-height: 140px;
+
+            ul li {
                 div {
-                    display: block;
+                    display: inline-block;
+                    div {
+                        display: block;
+                    }
+                }
+
+                .file_name {
+                    padding: 3px 0 0 10px;
+                    width: 350px;
+                }
+
+                .workfile_link {
+                    @include font-primary-link;
+                    max-width: 100%;
+                    padding: 0 0 3px 0;
+                }
+
+                .workspace_image {
+                    vertical-align: bottom;
+                    width: 20px;
+                    padding-right: 10px;
+                }
+
+                .workspace_link {
+                    @include font-secondary-link;
+                }
+
+                .time_edited {
+                    float: right;
+                    padding-right: 200px;
+                    vertical-align: top;
+                    padding-top: 15px;
+                    @include secondary-text-small;
                 }
             }
+        }
 
-            .file_name {
-                padding: 3px 0 0 10px;
-                width: 350px;
+        #recent_workfiles_configuration {
+            display:none;
+
+            .mask {
+                position: absolute;
+                top: -10px;
+                left: -10px;
+                background-color: rgba(0,0,0,.75);
+                padding-bottom: 2px;
+                padding-right: 20px;
+                width: 100%;
             }
 
-            .workfile_link {
-                @include font-primary-link;
-                max-width: 100%;
-                padding: 0 0 3px 0;
+            .config_content {
+                background-color: white;
+                margin: 10px;
+                padding: 10px;
             }
 
-            .workspace_image {
-                vertical-align: bottom;
-                width: 20px;
-                padding-right: 10px;
-            }
-
-            .workspace_link {
-                @include font-secondary-link;
-            }
-
-            .time_edited {
-                float: right;
-                padding-right: 200px;
-                vertical-align: top;
+            .button_row {
                 padding-top: 15px;
-                @include secondary-text-small;
             }
         }
     }
@@ -150,27 +217,39 @@ div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
     }
 }
 
-.dashboard_sub_header {
+.module_sub_header {
+    padding-bottom: 7px;
+}
+
+.dashboard_sub_header, .dashboard_module {
     .right {
         float: right;
         .button {
             background-color: $shaded-background-color;
             display: inline-block;
-
-            $size: 28px;
-            @include panel-button($size);
-            width: $size;
+            cursor: pointer;
 
             i {
                 color: $color-text3;
-                font-size: 14px;
+                font-size: 13px;
             }
+        }
+
+        .configure {
+            width: 40px;
+            @include panel-button($height-button-widgetshell);
+        }
+
+        .clear_list {
+            width: 80px;
+            @include panel-button($height-button-widgetshell);
         }
     }
 }
 
+/* rules for the recent activity hovering list that is part of the workspace cards */
 .tooltip {
-    width: 350px;
+        
     li.comment {
         .insight_ribbon {
             top: -18px;
@@ -179,4 +258,49 @@ div[data-page="Dashboard"], div[data-page="UserDashboardEdit"] {
             display: inline;
         }
     }
+}
+
+/* workspace chart: card of workspace details that displays on hover */
+$padding-side-canon: 10px;
+$padding-top-canon: 10px;
+$padding-bottom-canon: 10px;
+  
+.hovercard {
+    width: 300px;
+    box-shadow: $shadow-canon;
+    
+	p {
+		margin: 0;
+	}
+
+	.ui-tooltip-content {
+		/* override defaults */
+		padding: 0;
+    	background-color: #FFFFFF;
+    	border-radius: 3px;
+         
+        .name_row {
+			padding: $padding-top-canon $padding-side-canon $padding-bottom-canon $padding-side-canon;
+			background-color: $greyish-blue;
+
+            a {
+                @include font-primary-link;
+                line-height: normal;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				display: block;           
+            }
+        }
+        
+        .summary_row {
+			padding: $padding-top-canon $padding-side-canon $padding-bottom-canon $padding-side-canon;        
+        }
+
+        .activity_metric_row {
+			padding: $padding-top-canon $padding-side-canon $padding-bottom-canon + 5 $padding-side-canon;
+            border-top: 2px dotted $border-color-darkest;
+            @include font-normal-gamma;
+        }
+	}
 }

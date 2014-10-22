@@ -52,7 +52,7 @@ $list-item-height: 39px;
 
     .shuttle_body {
         position: relative;
-        height: (($list-item-height + $border-width) * 8);
+        height: (($list-item-height + $default-border-width) * 8);
     }
 
     a {

@@ -1,6 +1,11 @@
 @import "compass/css3";
 
 $header-margin: 30px;
+
+/* left and right side margins to match general page margins */
+$header-margin-left: $page-margin-left;
+$header-margin-right: $page-margin-right;
+
 $expanded-search-width: 450px;
 $notification-token-width: $header-margin * 2;
 
@@ -119,13 +124,18 @@ $notification-token-width: $header-margin * 2;
                 }
 
                 &.active .caret::before {
+                
+                    /* rotate when expanding the menu */
+                    /* & translate the caret's origin (centerpoint) for rotation so that it displays correctly */
+                    /* dimensions are unique to the OI caret glyph */
                     @include rotateX(180deg);
+                    @include transform-origin (50%, 40%);
                 }
 
                 &.username {
                     &:hover { background-color: $brand-tint; }
                     padding: 0 12px;
-                    margin-right: $header-margin;
+                    margin-right: $header-margin-right;
                 }
 
                 &.messages {
@@ -141,7 +151,6 @@ $notification-token-width: $header-margin * 2;
                 }
 
                 &.advisor_now a img {
-                    max-height: $header-height / 4;
                     margin-bottom: 0px;
                     padding-right: 15px;
                 }
@@ -224,7 +233,7 @@ $notification-token-width: $header-margin * 2;
 
         .menu.popup_drawer {
             $drawer-width: 165px + $header-height;
-            @include transition-duration(0.45s);
+            @include transition-duration(0.5s);
             @include transition-timing-function(cubic-bezier(0,0,0,1));
 
             &.hidden { left: -$drawer-width; display: block !important;}
@@ -244,13 +253,12 @@ $notification-token-width: $header-margin * 2;
                 text-align: center;
                 &.remainder { height: 100vh; }
             }
-            
         }
 
         .menu.popup_username {
             line-height: 24px;
             /* add 1 for 1px border around popup */
-            right: $header-margin - 1;
+            right: $header-margin-right - 1;
             width: $header-margin * 6;
 
             li {
@@ -313,7 +321,6 @@ $notification-token-width: $header-margin * 2;
                 font-weight: $semibold;
             }
         }
-
     }
 }
 

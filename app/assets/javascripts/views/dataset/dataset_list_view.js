@@ -18,7 +18,7 @@ chorus.views.DatasetList = chorus.views.PageItemList.extend({
     postRender: function() {
         var $list = this.$el;
         if(this.collection.length === 0 && this.collection.loaded) {
-            var linkText = Handlebars.helpers.linkTo("#/data_sources", t("datasource.browse"));
+            var linkText = Handlebars.helpers.linkTo("#/data_sources", t("dataset.browse.linkText"));
             var noDatasetEl = $("<div class='browse_more'></div>");
 
             var hintText;

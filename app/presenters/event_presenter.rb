@@ -93,7 +93,7 @@ class EventPresenter < Presenter
   def targets_hash
     model.targets.reduce({}) do |hash, entry|
       name, model = entry
-      hash[name] = present(model, extended_options)
+      hash[name] = present(model, extended_options.merge(:workfile_as_latest_version => true))
       hash
     end
   end

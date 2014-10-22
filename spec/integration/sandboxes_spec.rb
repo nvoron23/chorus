@@ -13,7 +13,7 @@ describe "Sandbox", :greenplum_integration do
 
   it "creates sandbox in workspace" do
     visit("#/workspaces/#{workspace.id}")
-    click_link "Add a sandbox"
+    click_link "Add a Sandbox"
 
     within_modal do
       #data_source

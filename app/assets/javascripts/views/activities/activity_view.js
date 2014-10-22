@@ -12,7 +12,9 @@ chorus.views.Activity = chorus.views.Base.extend({
         'click a.delete_note': 'launchDeleteNoteConfirmAlert',
         'click a.delete_notification': 'launchNotificationDeleteAlert',
         'click a.edit_note': 'launchEditNoteDialog',
-        'click a.comment': 'launchCommentDialog'
+        'click a.comment': 'launchCommentDialog',
+        'click a.image_link': 'launchImageDialog',
+        'click .image_attachment_link': 'launchAttachmentImageDialog'
     },
 
     subviews: {
@@ -121,6 +123,25 @@ chorus.views.Activity = chorus.views.Base.extend({
     launchCommentDialog: function(e) {
         e.preventDefault();
         var dialog = new chorus.dialogs.Comment({pageModel: this.model, eventId: this.model.id});
+        dialog.launchModal();
+    },
+
+    launchImageDialog: function(e) {
+        e.preventDefault();
+        var dialog = new chorus.dialogs.ShowImage({activity: this.model, originalModule: this.parentView.parentView});
+        dialog.launchModal();
+    },
+
+    launchAttachmentImageDialog: function(e) {
+        e.preventDefault();
+        var attachment;
+        var thisLink = e.srcElement.src;
+        for(var x = 0; x < this.model.attachments().length; x++) {
+            if(thisLink.indexOf(this.model.attachments()[x].iconUrl()) > -1) {
+                attachment = this.model.attachments()[x];
+            }
+        }
+        var dialog = new chorus.dialogs.ShowImage({activity: this.model, originalModule: this.parentView.parentView, attachment: attachment});
         dialog.launchModal();
     },
 

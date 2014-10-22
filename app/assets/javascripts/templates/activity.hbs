@@ -13,6 +13,15 @@
         <div class="activity_header">
             {{headerHtml}}
         </div>
+        {{#if isWorkfileImage}}
+            {{#if imageSrc}}
+                <div class="workfile_image">
+                    <a class="image_link dialog" href="#">
+                        <span class="image"><img src="{{imageSrc}}" /></span>
+                    </a>
+                </div>
+            {{/if}}
+        {{/if}}
         {{#if isUserGenerated }}
             <div class="truncated_text"></div>
         {{else}}
@@ -24,13 +33,18 @@
                 {{/if}}
             {{/if}}
         {{/if}}
+
         <ul class='attachments'>
         {{#eachFunctionResult attachments}}
             <li>
-                <a href="{{url}}" {{#if useExternalLink}}target="_blank"{{/if}}>
-                    <span class="image"><img src="{{iconSrc}}" /></span>
-                    <span class="name" title="{{name}}">{{name}}</span>
-                </a>
+                {{#if isImage}}
+                    <span class="image image_attachment_link" style="cursor:pointer"><img src="{{iconSrc}}" /></span>
+                {{else}}
+                    <a href="{{url}}" {{#if useExternalLink}}target="_blank"{{/if}}>
+                        <span class="image"><img src="{{iconSrc}}" /></span>
+                        <span class="name" title="{{name}}">{{name}}</span>
+                    </a>
+                {{/if}}
             </li>
         {{/eachFunctionResult}}
         </ul>

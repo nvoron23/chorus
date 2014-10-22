@@ -1,26 +1,35 @@
 @import "_common";
+@import "compass/css3/border-radius";
 
 .about_box {
-    font-size: 12px;
-    line-height: 16px;
-
+    font-size: 14px;
     position: relative;
-    top: 60px;
+    top: 100px;
 
     border: $border-canon;
-
-    width: 425px;
+    @include border-radius($default-border-radius);
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
 
     .title {
+        @include border-top-radius($default-border-radius);
         background-color: $dialog-header-background;
         padding: 20px;
+        font-weight: normal;
     }
 
     .content{
         .text {
             padding: 10px;
+        }
+        .items li {
+            // special case for the about screen
+            padding-left: 20px;
+        }
+        .about_item {
+            float: right;
+            margin-right: 10px;
         }
     }
 }

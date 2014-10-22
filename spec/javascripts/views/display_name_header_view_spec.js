@@ -26,7 +26,7 @@ describe("chorus.views.DisplayNameHeader", function() {
                 this.view.render();
             });
 
-            it("shows the dipslay name", function() {
+            it("shows the display name", function() {
                 expect(this.view.$("h1").text().trim()).toBe(this.model.displayName());
             });
 

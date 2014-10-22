@@ -1,7 +1,7 @@
 .collection_list {
     $list-item-height: 39px;
 
-    max-height: (($list-item-height + $border-width) * 8) + $list-item-height;
+    max-height: (($list-item-height + $default-border-width) * 8) + $list-item-height;
     overflow: auto;
 
     ul {

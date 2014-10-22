@@ -55,5 +55,10 @@
     chorus.urlHelpers.workspacePath = function(workspaceId) {
         return "#/workspaces/" + workspaceId;
     };
+
+    chorus.urlHelpers.getMapping = function(key) {
+        var fileType = key && key.toLowerCase();
+        return map[fileType];
+    };
     Handlebars.registerHelper('workspacePath', chorus.urlHelpers.workspacePath);
 })();

@@ -51,7 +51,7 @@ describe UserDashboardsController do
 
       post :create, :user_id => user.id, :modules => multiple_modules
 
-      user.reload.dashboard_items.order(:location).map(&:name).should == multiple_modules
+      user.reload.dashboard_items.where('location > -1').order(:location).map(&:name).should == multiple_modules
     end
 
     context 'when the new config is invalid' do

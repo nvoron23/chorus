@@ -8,7 +8,7 @@ describe WorkfileUpgradedVersionPresenter, :type => :view do
   subject { WorkfileUpgradedVersionPresenter.present event, view, options }
   let(:options) { {} }
   let(:hash) { subject.to_hash }
-  let(:workfile_hash) { Presenter.present(event.workfile, view, sub_presenter_options).to_hash }
+  let(:workfile_hash) { Presenter.present(event.workfile, view, sub_presenter_options.merge(:workfile_as_latest_version => true)).to_hash }
   let(:workspace_hash) { Presenter.present(event.workspace, view, sub_presenter_options).to_hash }
   let(:sub_presenter_options) { {:succinct => true, :activity_stream => true} }
 

@@ -38,7 +38,7 @@ chorus.dialogs.CopyWorkfile = chorus.dialogs.PickWorkspace.extend({
             dataType: "json",
             data: params,
             success: function(data) {
-                self.closeModal();
+                self.closeModal(true);
                 var copiedWorkfile = new chorus.models.Workfile(workfile.parse(data));
                 chorus.toast("workfile.copy_dialog.toast", {workfileTitle: copiedWorkfile.get("fileName"), workspaceNameTarget: self.selectedItem().get("name")});
             },

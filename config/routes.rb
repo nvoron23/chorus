@@ -184,7 +184,12 @@ Chorus::Application.routes.draw do
   end
 
   resource :status, :only => [:show], :controller => 'status'
-  resource :dashboards, :only => [:show]
+  resource :dashboards, :only => [:show] do
+    scope :module => 'dashboards' do
+      resource :recent_workfiles, :only => [:create], :controller => 'recent_workfiles'
+      resource :project_card_list, :only => [:create, :show], :controller => 'project_card_list'
+    end
+  end
 
   namespace :import_console do
     match '/' => 'imports#index'

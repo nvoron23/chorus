@@ -1,0 +1,25 @@
+<div class="workspace_row">
+    <img class="workspace_image" src="{{workspaceIconUrl}}"/>
+    <span>
+        <a class="workspace_link" href='{{workspaceShowUrl}}'>{{workspaceName}}</a>
+    </span>
+</div>
+<div class="content_space">
+    <div class="interactions_row">
+        <a class="download" href="{{downloadUrl}}">{{t "actions.download"}}</a>
+        {{#if showFullOptions}}
+            <a class="add_note" href="#">{{t "actions.add_note"}}</a>
+        {{else}}
+            <a class="add_comment" href="#">{{t "comments.new_dialog.title"}}</a>
+        {{/if}}
+        {{#if showFullOptions}}
+            <a class="copy" href="#">{{t "actions.copy"}}</a>
+            <a class="edit_tags" href="#">{{t "actions.edit_tags"}}</a>
+            <a class="rename" href="#">{{t "actions.rename"}}</a>
+            <a class="delete_workfile" href="#">{{t "actions.delete_workfile"}}</a>
+        {{/if}}
+    </div>
+    <div class="image_space">
+        <img class="main_image" src="{{imageUrl}}" />
+    </div>
+</div>

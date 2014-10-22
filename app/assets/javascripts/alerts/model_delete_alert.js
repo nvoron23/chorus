@@ -29,7 +29,7 @@ chorus.alerts.ModelDelete = chorus.alerts.Confirm.extend({
     deleteMessageParams: $.noop,
 
     modelDeleted: function() {
-        this.closeModal();
+        this.closeModal(true);
         chorus.toast(this.deleteMessage, this.deleteMessageParams());
         if(this.model.entityType) {
             chorus.PageEvents.trigger(this.model.entityType + ":deleted", this.model);

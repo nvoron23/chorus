@@ -150,6 +150,7 @@ class ChorusConfig
     ]
     other_versions = [
         'Apache Hadoop 1.2',
+        'Apache Hadoop 2.5',
         'Cloudera CDH4',
         'Cloudera CDH5',
         'Hortonworks HDP 2.1',

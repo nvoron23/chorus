@@ -152,6 +152,10 @@ chorus.models.Workspace = chorus.models.Base.extend({
         return this.showUrl() + "/workfiles";
     },
 
+    datasetsUrl: function () {
+        return this.showUrl() + "/datasets";
+    },
+
     jobsUrl: function () {
         return this.showUrl() + "/jobs";
     },

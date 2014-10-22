@@ -66,8 +66,11 @@ chorus.Modal = chorus.views.Base.extend({
         }
     },
 
-    closeModal:function () {
+    closeModal:function (success) {
         $(document).trigger("close.facebox");
+        if (success === true) {
+            $(document).trigger("close.faceboxsuccess");
+        }
     },
 
     keydownHandler:function (e) {

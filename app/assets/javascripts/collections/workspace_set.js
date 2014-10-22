@@ -18,6 +18,10 @@ chorus.collections.WorkspaceSet = chorus.collections.Base.extend({
             params.showLatestComments = true;
         }
 
+        if (this.attributes.getOptions) {
+            params.getOptions = this.attributes.getOptions;
+        }
+
         params.succinct = this.attributes.succinct;
 
         return params;

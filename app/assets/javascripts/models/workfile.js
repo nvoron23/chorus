@@ -212,7 +212,7 @@
         },
 
         iconUrl: function(options) {
-            if (this.isImage()) {
+            if (this.isImage() && this.get("versionInfo")) {
                 return this.get("versionInfo").iconUrl;
             } else {
                 return chorus.urlHelpers.fileIconUrl(this.extension(), options && options.size);

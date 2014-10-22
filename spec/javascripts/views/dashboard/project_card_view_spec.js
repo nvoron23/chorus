@@ -15,6 +15,7 @@ describe("chorus.views.ProjectCard", function () {
         });
     });
 
+    /*
     describe("render", function () {
         beforeEach(function () {
             spyOn($.fn, 'qtip');
@@ -26,4 +27,5 @@ describe("chorus.views.ProjectCard", function () {
             expect(qtipCall.object.selector).toBe(".info_icon .icon");
         });
     });
+    */
 });

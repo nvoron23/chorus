@@ -1,4 +1,24 @@
-#!/bin/sh
+#!/bin/bash
+
+# For IntelliJ IDEA 12, the following will yield "External Tools" to run jasmine within the IDE (or launch into a browser)
+# On a mac with default install: $HOME/Library/Preferences/IntelliJIdea12/tools/jasmine.xml
+#        <?xml version="1.0" encoding="UTF-8"?>
+#        <toolSet name="jasmine">
+#          <tool name="jasmine" description="Jasmine in chrome" showInMainMenu="true" showInEditor="true" showInProject="true" showInSearchPopup="true" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+#            <exec>
+#              <option name="COMMAND" value="$USER_HOME$/alpine/chorus/script/launch_jasmine.sh" />
+#              <option name="PARAMETERS" value="$FilePathRelativeToProjectRoot$" />
+#              <option name="WORKING_DIRECTORY" value="$USER_HOME$/alpine/chorus" />
+#            </exec>
+#          </tool>
+#          <tool name="jaz" description="Jasmine in console" showInMainMenu="true" showInEditor="true" showInProject="true" showInSearchPopup="true" disabled="false" useConsole="true" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+#            <exec>
+#              <option name="COMMAND" value="$USER_HOME$/alpine/chorus/script/launch_phantom.sh" />
+#              <option name="PARAMETERS" value="$FilePathRelativeToProjectRoot$" />
+#              <option name="WORKING_DIRECTORY" value="$USER_HOME$/alpine/chorus" />
+#            </exec>
+#          </tool>
+#        </toolSet>
 
 if [ -z "$1" ]; then
     echo "Opening $JASMINE_URL to run all the tests"
@@ -35,5 +55,11 @@ fi
 SPEC=$(echo $DESCRIBE_LINE | sed 's/.*["'\'']\(.*\)["'\''][^"'\'']*$/\1/')
 
 echo "Running $JASMINE_URL$SPEC in phantom"
+
+# try to have the PATH variable in order before we run phantom
+source ~/.bash_profile
+if [[ $PATH != ?(*:)/usr/local/bin?(:*) ]]; then
+    export PATH=$PATH:/usr/local/bin
+fi
 
 phantomjs spec/run-phantom-jasmine.js 8888 $SPEC

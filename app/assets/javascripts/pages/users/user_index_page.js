@@ -1,10 +1,5 @@
 chorus.pages.UserIndexPage = chorus.pages.Base.extend({
     constructorName: 'UserIndexPage',
-
-    crumbs:[
-        { label:t("breadcrumbs.home"), url:"#/" },
-        { label:t("breadcrumbs.users") }
-    ],
     helpId: "users",
 
     setup:function () {
@@ -14,6 +9,7 @@ chorus.pages.UserIndexPage = chorus.pages.Base.extend({
 
         this.mainContent = new chorus.views.MainContentList({
             modelClass:"User",
+            title: t("header.users_list"),
             collection:this.collection,
             linkMenus:{
                 sort:{
@@ -25,7 +21,6 @@ chorus.pages.UserIndexPage = chorus.pages.Base.extend({
                     event:"sort",
                     chosen: "firstName"
                 }
-
             }
         });
 
@@ -34,7 +29,11 @@ chorus.pages.UserIndexPage = chorus.pages.Base.extend({
             this.collection.fetch();
         }, this);
 
-        this.mainContent.contentDetails = new chorus.views.ListContentDetails({ collection: this.collection, modelClass: "User", multiSelect: true});
+        this.mainContent.contentDetails = new chorus.views.ListContentDetails({ 
+            collection: this.collection, 
+            modelClass: "User", 
+            multiSelect: true
+        });
 
         this.buildPrimaryActionPanel();
 
@@ -57,4 +56,5 @@ chorus.pages.UserIndexPage = chorus.pages.Base.extend({
         var actions = isAdmin ? [{name: 'add_user', target: '#/users/new'}] : [];
         this.primaryActionPanel = new chorus.views.PrimaryActionPanel({actions: actions});
     }
+    
 });

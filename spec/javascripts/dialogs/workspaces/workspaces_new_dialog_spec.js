@@ -38,10 +38,6 @@ describe("chorus.dialogs.WorkspacesNew", function() {
         it("is not public by default", function() {
             expect(this.dialog.$('input[name=public]')).not.toBeChecked();
         });
-
-        it('is project by default', function () {
-            expect(this.dialog.$('input[name=make_project]')).toBeChecked();
-        });
     });
 
     describe("submitting the form", function() {
@@ -61,21 +57,6 @@ describe("chorus.dialogs.WorkspacesNew", function() {
             this.dialog.$("input[type=checkbox][name=public]").prop("checked", false);
             this.dialog.$("form.new_workspace").submit();
             expect(this.dialog.resource.get("public")).toBe(false);
-        });
-
-        it("sets isProject to true on the model", function () {
-            expect(this.dialog.resource.get("isProject")).toBeTruthy();
-        });
-
-        context("when is project is not checked", function () {
-            beforeEach(function () {
-                this.dialog.$('input[name=make_project]').prop('checked', false);
-                this.dialog.$("form.new_workspace").submit();
-            });
-
-            it("sets isProject to false on the model", function () {
-                expect(this.dialog.resource.get("isProject")).toBeFalsy();
-            });
         });
 
         it("saves the workspace", function() {

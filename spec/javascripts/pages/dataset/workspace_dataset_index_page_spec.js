@@ -84,7 +84,7 @@ describe("chorus.pages.WorkspaceDatasetIndexPage", function() {
                 });
 
                 it("has a 'no results' message", function() {
-                    expect(this.page.$(".browse_more")).toContainTranslation("dataset.browse_more_workspace", {linkText: "browse your data sources"});
+                    expect(this.page.$(".browse_more")).toContainTranslation("dataset.browse_more_workspace", {linkText: t("dataset.browse.linkText") });
                 });
             });
 

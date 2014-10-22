@@ -1,28 +1,54 @@
-<div class='name_row'>
-    <a class="project_name" href="{{showUrl}}">
-        <span title="{{name}}">{{name}}</span>
-    </a>
-</div>
-
-{{#if summary}}
-    <div class='info_icon'>
-        <i class='oi icon' data-glyph="copywriting" title="{{summary}}"></i>
+<div class="name_row">
+    <div class="layer_name">
+        <a class="project_name" href="{{showUrl}}"><span title="{{name}}">{{name}}</span></a>
     </div>
-{{/if}}
 
-<div class='status'/>
-
-<div class='insight_zone'>
-    {{#if latestInsight}}
-        <div class='activity'></div>
-    {{else}}
-        <div class='activity space_filler'>
-            <div class='text low_light'>{{t 'project_card.insight.space_filler_text'}}</div>
+        {{#if hasMilestones}}
+        <!-- Only display if there is some milestone progress -->
+        <div class="layer_ambient_progress">
+            <span class="progress_label"
+                title="{{milestoneCompletedCount}}/{{milestoneCount}} {{pluralize milestoneCount 'dashboard.project_card_list.milestone'}} {{t 'dashboard.project_card_list.milestone_completed'}}">
+                <a href="{{milestonesUrl}}"> {{t 'workspace.project.progress.label'}} {{milestoneCompletedCount}}/{{milestoneCount}}</a>
+            </span>
+            <div class="progress_bar card" style="width:{{milestoneProgress}}%"></div>
         </div>
-    {{/if}}
+        {{/if}}
+
 </div>
-{{#if latestInsight}}
-    <a href="{{allInsightsRoute}}" class='all_insights'>
-        {{t 'project_card.insight.all_insights'}}
-    </a>
-{{/if}}
+
+<div class="metrics_row">
+    <div class="data_row first">
+        <div class="left_side">
+            <div class="number"><a class="insight_link" href="{{showUrl}}">{{insightsCount}}</a></div>
+            <div class="element">{{pluralize insightsCount 'dashboard.project_card_list.insight'}}</div>
+        </div>
+        <div class="right_side">
+            <div class="number"><a class="workfile_link" href="{{workfilesUrl}}">{{workfilesCount}}</a></div>
+            <div class="element">{{pluralize workfilesCount 'dashboard.project_card_list.workfile'}}</div>
+        </div>
+    </div>
+    <div class="data_row last">
+        <div class="left_side">
+            <div class="number"><a class="dataset_list" href="{{datasetsUrl}}">{{datasetsCount}}</a></div>
+            <div class="element">{{pluralize datasetsCount 'dashboard.project_card_list.dataset'}}</div>
+        </div>
+        <div class="right_side">           
+            <div class="number"> <a class="member_list" href="{{showUrl}}">{{membersCount}}</a></div>
+            <div class="element">{{pluralize membersCount 'dashboard.project_card_list.member'}}</div>
+        </div>
+    </div>
+</div>
+
+<div class='insight_row'>
+    <div class="main_row 
+        {{#if hasRecentComments}}
+            has_recent_comments
+        {{else}}
+            no_comments_or_anything
+        {{/if}} ">
+        {{recentCommentsCount}} {{pluralize recentCommentsCount 'dashboard.project_card_list.comment'}} {{t 'dashboard.project_card_list.and'}} {{recentInsightsCount}} {{pluralize recentInsightsCount 'dashboard.project_card_list.insight'}}
+    </div>
+    <div class="sub_row">
+        {{t 'dashboard.project_card_list.recent'}}
+    </div>
+</div>

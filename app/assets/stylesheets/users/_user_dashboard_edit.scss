@@ -47,7 +47,7 @@
 
             &.ui-sortable-placeholder {
                 visibility: visible !important;
-                border: dashed $border-width $brand;
+                border: $default-border-width dashed $brand;
                 background: transparent;
             }
         }

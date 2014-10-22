@@ -14,4 +14,3 @@ chorus.views.DashboardDataSourceList = chorus.views.Base.extend({
         };
     }
 });
-

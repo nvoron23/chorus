@@ -26,7 +26,7 @@ $bright-grey:       rgb(88, 89, 95);
 $greyish-yellow:    rgb(204, 204, 200);
 $light-grey-yellow: rgb(243, 243, 242);
 $light-gray:        rgb(234, 238, 241);
-$shadow-gray:		darken($light-gray, 7%);
+$shadow-gray:		darken($light-gray, 11%);
 $charcoal:          #464646;
 
 //transparent variants
@@ -66,6 +66,7 @@ $login-background: $bluer-lavender;
 // Border colors
 $border-color: $light-gray;
 $border-color-dark: darken($border-color, 5%);
+$border-color-darkest: darken($border-color, 15%);
 
 // Text colors
 $color-text1: darken($charcoal, 10%);
@@ -87,14 +88,21 @@ $subheader-height: 60px;
 $subnav-height: 45px;
 $workspace-header-height: $subnav-height + $subheader-height + $header-height;
 $summary-line-height: 19px;
-$border-width: 1px;
+$default-border-width: 1px;
+$default-border-radius: 3px;
+
+/* global margin for left and right sides of all pages */
+$page-margin-left: 25px;
+$page-margin-right: 25px;
+/* global margin for bottom of all pages */
+$page-margin-bottom: 60px;
 
 //Specials
-$border-canon: $border-width solid $border-color;
-$dark-border-canon: $border-width solid $border-color-dark;
+$border-canon: $default-border-width solid $border-color;
+$dark-border-canon: $default-border-width solid $border-color-dark;
 $strong-border-canon: 5px solid $color-text3;
 
-$shadow-canon: 1px 2px 2px 0px $shadow-color;
+$shadow-canon: 2px 2px 3px 0px $shadow-color;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,6 +125,10 @@ $picklist-selected-background-color: #3795DD;
 $chart-fill-color: #4A83C3;
 $dataset-number-background-color: #788DA5;
 
+// standard lightbox (mask, facebox, etc) background color and opacity
+$lightbox-overlay-opacity: 0.49;
+$lightbox-overlay-color: rgba(0,0,0,$lightbox-overlay-opacity);
+ 
 // Border colors
 $content-details-action-link-border-color: #98B675;
 $results-console-border-color: #88A8D3;
@@ -135,6 +147,7 @@ $notification: $bright-turquoise;
 // Dimensions
 $sidebar-width : 266px;
 $sidebar-padding-x : 16px;
+$sidebar-padding-left : 15px;
 $sidebar-padding-top : 10px;
 $page-min-width : 1024px;
 $padding-x : 10px;
@@ -181,6 +194,8 @@ $drag-z-index: 9999;
 $medium-font: 14px;
 $small-font: 12px;
 $smallest-font: 10px;
+
+$fontsize-workspace-name: 16px;
 
 ///////////////////////////////////////////////////////
 // TODO: Reconcile these with above values
@@ -268,7 +283,13 @@ $action-bar-secondary-background-color: $light-blue;
     @include debugging-mixin;
     font-size: 24px;
     font-weight: $semibold;
-    color: black;
+    color: $color-text1;
+}
+
+@mixin subheading-normal {
+    font-size: 20px;
+    font-weight: normal;
+    color: $color-text3;
 }
 
 @mixin section-heading {
@@ -305,15 +326,23 @@ $action-bar-secondary-background-color: $light-blue;
     @include debugging-mixin;
     font-size: 13px;
     font-weight: normal;
-    color: black;
+    color: #000000;
 }
 
 @mixin font-normal-delta {
     @include debugging-mixin;
     font-size: 14px;
     font-weight: normal;
-    color: black;
+    color: #000000;
 }
+
+@mixin font-normal-gamma {
+    @include debugging-mixin;
+    font-size: 14px;
+    font-weight: $semibold;
+	color: $color-text1;
+}
+
 
 @mixin font-secondary-content {
     @include debugging-mixin;
@@ -322,10 +351,14 @@ $action-bar-secondary-background-color: $light-blue;
     color: $color-text2;
 }
 
+/* primary link */
+/* used for the name of items in list */
+/* workspaces, files, etc. */
+
 @mixin font-primary-link {
     color: $brand;
     font-size: 18px;
-    font-weight: $light;
+    font-weight: normal;
 }
 
 @mixin font-action-link {
@@ -542,8 +575,10 @@ $action-bar-secondary-background-color: $light-blue;
 }
 
 @mixin sidebar-panel {
+
+    $border-radius: $default-border-radius;
     margin-top: $sidebar-padding-top;
-    $border-radius: 3px;
+
     $sidebar-panel-width: $sidebar-width - 16px;
     width: $sidebar-panel-width;
     border: $border-canon;
@@ -615,7 +650,7 @@ $action-bar-secondary-background-color: $light-blue;
 
     background-color: $shaded-background-color;
     border: $border-canon;
-    @include border-radius(3px);
+    @include border-radius($default-border-radius);
 
     &:hover {
         background-color: lighten($gray, 35%);
