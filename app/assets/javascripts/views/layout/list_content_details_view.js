@@ -112,7 +112,6 @@ chorus.views.ListContentDetails = chorus.views.Base.include(
         if (this.collection.loaded && this.collection.pagination) {
             var page = parseInt(this.collection.pagination.page, 10);
             var total = parseInt(this.collection.pagination.total, 10);
-
             hash.nextPage = page < total;
         }
 

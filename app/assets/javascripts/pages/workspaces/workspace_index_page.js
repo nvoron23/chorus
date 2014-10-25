@@ -24,9 +24,9 @@ chorus.pages.WorkspaceIndexPage = chorus.pages.Base.extend({
                 scope:{
                     options:[
                         {data:"members_only", text:t("workspace.project.filter.members_only")},
-                        {data:"all", text:t("workspace.project.filter.everyones")}
+                        {data:"members_any", text:t("workspace.project.filter.everyones")}
                     ],
-                    event:"filter"
+                    event:"filterScope"
                 }
             },
             contentDetailsOptions: { multiSelect: true }
@@ -37,25 +37,19 @@ chorus.pages.WorkspaceIndexPage = chorus.pages.Base.extend({
         this.subscribePageEvent("workspace:selected", this.setModel);
 
         this.mainContent.contentHeader.bind("choice:filter", this.choose, this);
+        this.mainContent.contentHeader.bind("choice:filterScope", this.chooseScope, this);
         this.choose("active");
-    },
-
-    typeOptions: function() {
-        return  [
-            {data: "all", text:t("filter.all_workspaces")},
-            {data: "active", text:t("filter.active_workspaces")}
-        ];
-    },
-
-    scopeOptions: function() {
-        return [
-            {data: "all", text: t("search.type.all")},
-            {data: "members_only",  text:t("workspace.project.filter.members_only")},
-        ];
+        this.choose("members_any");
     },
     
     choose:function (choice) {
+        console.log ("filter ->" + choice);
         this.collection.attributes.active = (choice === "active");
+        this.collection.fetch();
+    },
+    chooseScope:function (choice) {
+        console.log ("scope ->" + choice);
+        this.collection.attributes.members_only = (choice === "members_only");
         this.collection.fetch();
     },
 

@@ -23,7 +23,6 @@ chorus.collections.WorkspaceSet = chorus.collections.Base.extend({
         }
 
         params.succinct = this.attributes.succinct;
-
         return params;
     }
 });
