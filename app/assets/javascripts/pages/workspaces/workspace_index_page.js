@@ -17,7 +17,14 @@ chorus.pages.WorkspaceIndexPage = chorus.pages.Base.extend({
                     title:t("filter.show"),
                     options:[
                         {data:"active", text:t("filter.active_workspaces")},
-                        {data:"all", text:t("filter.all_workspaces")}
+                        {data:"all", text:t("filter.active_and_archived_workspaces")}
+                    ],
+                    event:"filter"
+                },
+                scope:{
+                    options:[
+                        {data:"members_only", text:t("workspace.project.filter.members_only")},
+                        {data:"all", text:t("workspace.project.filter.everyones")}
                     ],
                     event:"filter"
                 }
@@ -33,6 +40,20 @@ chorus.pages.WorkspaceIndexPage = chorus.pages.Base.extend({
         this.choose("active");
     },
 
+    typeOptions: function() {
+        return  [
+            {data: "all", text:t("filter.all_workspaces")},
+            {data: "active", text:t("filter.active_workspaces")}
+        ];
+    },
+
+    scopeOptions: function() {
+        return [
+            {data: "all", text: t("search.type.all")},
+            {data: "members_only",  text:t("workspace.project.filter.members_only")},
+        ];
+    },
+    
     choose:function (choice) {
         this.collection.attributes.active = (choice === "active");
         this.collection.fetch();
