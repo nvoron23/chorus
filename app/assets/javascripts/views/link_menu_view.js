@@ -22,7 +22,6 @@ chorus.views.LinkMenu = chorus.views.Base.extend({
         }, this);
 
         return this.options;
-
     },
 
     popupLinkClicked:function (e) {
