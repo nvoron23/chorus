@@ -1,16 +1,26 @@
+// intended to be default table inner-cell padding for entire site.
+// needs to be moved to better location for broad usage.
+
+$default-table-cell-padding: 5px 10px 10px 10px;
+$default-table-header-bg: $light-gray;
+$default-table-header-fontweight: $semibold;
+$default-table-header-fontcolor: #666;
+
+
 .job_result_detail {
-  table {
-    margin-top: 20px;
-    border-collapse: collapse;
-    th {
-      width: 20%;
+    table {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        
+        th {
+            width: 20%;
+            background-color: $default-table-header-bg;
+            font-weight: $default-table-header-fontweight;
+            color: $default-table-header-fontcolor;
+        }
+        th, td {
+            border: $dark-border-canon;
+            padding: $default-table-cell-padding;
+        }
     }
-    th, td {
-      border: 1px solid grey;
-      padding: 10px;
-    }
-    td {
-      padding-right: 25px;
-    }
-  }
 }
