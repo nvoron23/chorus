@@ -19,11 +19,11 @@ window.Chorus = function chorus$Global() {
 
     self.initialize = function() {
         // Check and prompt for Chrome Frame install if applicable
-        if (!window.jasmine && BrowserDetect.browser === "Explorer" && BrowserDetect.version <= "8") {
-            CFInstall.check({
-                mode: "overlay"
-            });
-        }
+//         if (!window.jasmine && BrowserDetect.browser === "Explorer" && BrowserDetect.version <= "8") {
+//             CFInstall.check({
+//                 mode: "overlay"
+//             });
+//         }
         self.PageEvents = _.extend({}, Backbone.Events);
         self.session = new chorus.models.Session();
         self.router = new chorus.Router(self);
