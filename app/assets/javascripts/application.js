@@ -13,6 +13,7 @@
 //= require handlebars
 //= require_tree ./templates
 //= require jquery
+//= require jquery-migrate-min
 //= require vendor/underscore-1.6.0
 //= require vendor/backbone-1.0.0
 //= require vendor/jquery.ui.core
@@ -33,7 +34,7 @@
 //= require codemirror/addons/search/match-highlighter
 //= require vendor/textext
 //= require vendor/es5-shim
-//= require vendor/d3
+//= require vendor/d3.min
 //= require vendor/datepicker_lang
 //= require_tree ./vendor
 //= require messenger
