@@ -7,9 +7,9 @@ describe("chorus.views.DatasetEditChorusView", function() {
         this.clock = this.useFakeTimers();
 
         // in IE8, we can't 'select' a textrange whose textarea is not on the DOM
-        if ($.browser.msie) {
-            spyOn(window.TextRange.prototype, 'select');
-        }
+//         if ($.browser.msie) {
+//             spyOn(window.TextRange.prototype, 'select');
+//         }
 
         var originalFromTextArea = CodeMirror.fromTextArea;
         spyOn(CodeMirror, "fromTextArea").andCallFake(_.bind(function(textarea, opts) {
