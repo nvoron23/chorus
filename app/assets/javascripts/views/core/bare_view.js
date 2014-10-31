@@ -316,7 +316,8 @@ chorus.views.Bare = Backbone.View.include(
                     if (!alreadyInitialized) {
                         $el.addClass("custom_scroll");
                         var timeoutId;
-                        $el.unbind('hover').hover(function() {
+//                         $el.unbind('hover').hover(function() {
+                        $el.unbind('mouseenter mouseleave').hover(function() {
                             clearTimeout(timeoutId);
                             $el.find('.jspVerticalBar, .jspHorizontalBar').stop(true, true).fadeIn(150);
                         }, function() {
