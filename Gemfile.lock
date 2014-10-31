@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Chorus/gnip.git
-  revision: a6bcb4e7981022c6e0c9f70e311200b82451ef2e
+  revision: c048a22652ed553ec6ab58dd84cfb4c9117eed24
   specs:
     chorusgnip (0.0.1)
 
@@ -32,28 +32,28 @@ GIT
 
 GIT
   remote: git://github.com/charleshansen/backbone_fixtures_rails.git
-  revision: 60827e4a9849d1efb4fe173f57afeec1d4f8c2e6
+  revision: 0bb6b749407059980e81644c81a01e265b113607
   specs:
-    backbone_fixtures_rails (0.0.1)
+    backbone_fixtures_rails (0.0.3)
       jasmine
-      railties (~> 3.1)
+      railties (>= 3.1)
       rspec
 
 GIT
   remote: git://github.com/pivotal/jasmine-gem.git
-  revision: ad8f6c839bce5d362409e59c46043b0ecc762faf
+  revision: 4607d84cdd8485797432e4bd6d2ee8dea6b78e96
   specs:
-    jasmine (2.0.0.rc3)
-      jasmine-core (~> 2.0.0.rc3)
+    jasmine (2.0.3)
+      jasmine-core (~> 2.0.0)
       phantomjs
-      rack
+      rack (>= 1.2.1)
       rake
 
 GIT
   remote: git://github.com/pivotal/jasmine.git
-  revision: 706180ad0188f317b456091da70c9b323f4bbc20
+  revision: d4fc787ea75e84b9238cee988dbe9b2c04a233a4
   specs:
-    jasmine-core (2.0.0.rc3)
+    jasmine-core (2.0.4)
 
 GIT
   remote: git://github.com/taktsoft/sunspot.git
@@ -158,7 +158,7 @@ GEM
     eventmachine (1.0.3)
     eventmachine (1.0.3-java)
     execjs (2.2.2)
-    factory_girl (4.2.0)
+    factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     fakefs (0.6.0)
     faker (1.4.3)
@@ -176,8 +176,8 @@ GEM
     foreman (0.64.0)
       dotenv (~> 0.7.0)
       thor (>= 0.13.6)
-    fuubar (1.3.3)
-      rspec (>= 2.14.0, < 3.1.0)
+    fuubar (2.0.0)
+      rspec (~> 3.0)
       ruby-progressbar (~> 1.4)
     handlebars_assets (0.18)
       execjs (>= 1.2.9)
@@ -225,7 +225,7 @@ GEM
     messengerjs-rails (1.4.1)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    mizuno (0.6.6)
+    mizuno (0.6.8)
       childprocess (>= 0.2.6)
       choice (>= 0.1.0)
       ffi (>= 1.0.0)
@@ -253,9 +253,9 @@ GEM
     premailer (1.8.2)
       css_parser (>= 1.3.5)
       htmlentities (>= 4.0.0)
-    premailer-rails (1.4.0)
-      premailer (~> 1.7)
-      rails (>= 3)
+    premailer-rails (1.8.0)
+      actionmailer (>= 3, < 5)
+      premailer (~> 1.7, >= 1.7.9)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -285,23 +285,28 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     rr (1.1.2)
-    rsolr (1.0.9)
+    rsolr (1.0.10)
       builder (>= 2.1.2)
-    rspec (2.14.1)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.8)
-    rspec-expectations (2.14.5)
-      diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.0)
-    rspec-rails (2.14.0)
+    rspec (3.1.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
+    rspec-core (3.1.7)
+      rspec-support (~> 3.1.0)
+    rspec-expectations (3.1.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.1.0)
+    rspec-mocks (3.1.3)
+      rspec-support (~> 3.1.0)
+    rspec-rails (3.1.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
+      rspec-core (~> 3.1.0)
+      rspec-expectations (~> 3.1.0)
+      rspec-mocks (~> 3.1.0)
+      rspec-support (~> 3.1.0)
+    rspec-support (3.1.2)
     ruby-progressbar (1.6.1)
     rubyzip (1.1.6)
     safe_yaml (1.0.4)
@@ -316,7 +321,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    sequel (4.6.0)
+    sequel (4.15.0)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     spoon (0.0.4)
@@ -326,15 +331,15 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.8)
+    sqlite3 (1.3.10)
     sunspot (2.0.0)
       pr_geohash (~> 1.0)
       rsolr (~> 1.0.7)
-    sunspot_matchers (2.0.0.4)
+    sunspot_matchers (2.1.1.0)
     sunspot_rails (2.0.0)
       nokogiri
       sunspot (= 2.0.0)
-    therubyrhino (2.0.2)
+    therubyrhino (2.0.4)
       therubyrhino_jar (>= 1.7.3)
     therubyrhino_jar (1.7.4)
     thor (0.18.1)
