@@ -35,7 +35,10 @@ group :assets do
   gem 'uglifier'
   gem 'yui-compressor'
   gem 'turbo-sprockets-rails3'
-  gem 'jquery-rails', '2.1.4'
+#  gem 'jquery-rails', '2.1.4'
+## updating to use jquery 1.11.1
+	gem 'jquery-rails', '3.1.0'
+	gem 'jquery-migrate-rails'
 end
 
 group :integration do
