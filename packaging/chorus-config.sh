@@ -49,7 +49,7 @@ PATH=$PATH:$CHORUS_HOME/packaging/dummy
 ##### PID file locations #####
 
 mkdir -p $CHORUS_HOME/tmp/pids
-SOLR_PID_FILE=$CHORUS_HOME/tmp/pids/solr-$RAILS_ENV.pid
+SOLR_PID_FILE=$CHORUS_HOME/tmp/pids/solr.$RAILS_ENV.pid
 NGINX_PID_FILE=$CHORUS_HOME/tmp/pids/nginx.pid
 JETTY_PID_FILE=$CHORUS_HOME/tmp/pids/jetty.pid
 SCHEDULER_PID_FILE=$CHORUS_HOME/tmp/pids/scheduler.$RAILS_ENV.pid
