@@ -557,6 +557,7 @@ $action-bar-secondary-background-color: $light-blue;
 @mixin pill-tab($min-width, $height: 21px) {
     &:hover .lozenge {
         background: $shaded-background-color;
+        text-decoration: none;
     }
     .lozenge {
         @include lozenge(0, $min-width, $height);

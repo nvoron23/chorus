@@ -55,10 +55,10 @@
         z-index: $header-z-index;
     }
     > .page_sub_header {
-        z-index: $header-z-index - 1; 
+        z-index: $header-z-index; 
     }
     .sub_nav {
-        z-index: $header-z-index - 2; 
+        z-index: $header-z-index; 
     }
 
     .breadcrumbs {
