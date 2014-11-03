@@ -1,25 +1,25 @@
 <li class="summary">
     <a href="#/workspaces/{{id}}">
-        <div class="lozenge">{{t "workspace.summary"}}</div>
+        <span class="lozenge">{{t "workspace.summary"}}</span>
     </a>
 </li>
 
 <li class="datasets">
     <a href="#/workspaces/{{id}}/datasets">
-        <div class="lozenge">{{t "workspace.datasets"}}</div>
+        <span class="lozenge">{{t "workspace.datasets"}}</span>
     </a>
 </li>
 
 <li class="workfiles">
     <a href="#/workspaces/{{id}}/workfiles">
-        <div class="lozenge">{{t "workspace.workfiles"}}</div>
+        <span class="lozenge">{{t "workspace.workfiles"}}</span>
     </a>
 </li>
 
 {{#unless limitJobs}}
     <li class="jobs">
         <a href="#/workspaces/{{id}}/jobs">
-            <div class="lozenge">{{t "workspace.jobs"}}</div>
+            <span class="lozenge">{{t "workspace.jobs"}}</span>
         </a>
     </li>
 {{/unless}}
@@ -27,7 +27,7 @@
 {{#unless limitMilestones}}
     <li class="milestones">
         <a href="#/workspaces/{{id}}/milestones">
-            <div class="lozenge">{{t "workspace.milestones"}}</div>
+            <span class="lozenge">{{t "workspace.milestones"}}</span>
         </a>
     </li>
 {{/unless}}
