@@ -182,7 +182,7 @@ $data-grid-body-z-index: 20;
 $data-grid-head-z-index: $data-grid-body-z-index + 1;
 
 $header-z-index: 15000;
-$menu-z-index: $header-z-index + 1;
+$menu-z-index: $header-z-index + 10;
 
 $dialog-overlay-z-index: $menu-z-index + 1;
 $dialog-z-index: $dialog-overlay-z-index + 1;
@@ -548,10 +548,18 @@ $action-bar-secondary-background-color: $light-blue;
 	}
 }
 
-@mixin pill-tab($min-width) {
-    &:hover .lozenge { background: $shaded-background-color; }
+/* ********* */
+/* used to generate the pill shapes used in sub nav and right-side nav tabs */
+/* call with: */
+/* min-width: min width of the pill. */
+/* height: height of the pill. if none provided, defaults to 21px. */
+
+@mixin pill-tab($min-width, $height: 21px) {
+    &:hover .lozenge {
+        background: $shaded-background-color;
+    }
     .lozenge {
-        @include lozenge(0, $min-width, 21px);
+        @include lozenge(0, $min-width, $height);
         font-size: 12px;
         color: $color-text2;
         padding: 0 10px;
@@ -570,13 +578,13 @@ $action-bar-secondary-background-color: $light-blue;
 @mixin lozenge($padding, $min-width, $height) {
     @include uppercase;
     height: $height;
-    line-height: $height;
+    line-height: $height - 1;
     font-weight: $semibold;
     display: inline-block;
     padding: $padding;
     text-align: center;
 
-    @include border-radius($height);
+    @include border-radius($height - 2);
     min-width: $min-width;
 }
 

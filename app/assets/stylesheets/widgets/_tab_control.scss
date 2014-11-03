@@ -1,3 +1,6 @@
+$tab_control-lozenge-min-width: 40px;
+$tab_control-lozenge-height: 21px;
+
 .primary_action_panel {
     .panel {
         @include sidebar-panel;
@@ -13,16 +16,15 @@
         text-align: center;
         padding: 0 $pill-padding;
         border-bottom: $border-canon;
-        min-height: 40px;
+        height: 40px;
         line-height: 40px;
 
         background: $accent;
         .tab {
+            display: inline;
             padding: 0 $pill-padding;
             cursor: pointer;
-            display: inline;
-            @include pill-tab(40px);
+            @include pill-tab($tab_control-lozenge-min-width, $tab_control-lozenge-height);
         }
     }
-
 }
