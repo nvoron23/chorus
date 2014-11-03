@@ -2,7 +2,7 @@
 
 ul.messenger {
   &.messenger-fixed {
-    z-index: 16000;
+    z-index: $toast-z-index;
   }
 }
 

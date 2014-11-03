@@ -151,7 +151,7 @@ $cell-width: 150px;
         }
 
         .popup_filter {
-          z-index: 9999999;
+          z-index: $popup_filter-z-index;
         }
       }
 
