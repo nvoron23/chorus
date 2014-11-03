@@ -1,3 +1,5 @@
+@import "_browser_support";
+
 @import "_common";
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
@@ -41,13 +43,22 @@
     margin-right: $sidebar-width + ($sidebar-padding-x);
 }
 
-//hax for position fixed header and sidebar
+/* hax for position fixed header and sidebar */
 .logged_in_layout {
     > .header, .page_sub_header, .sub_nav {
         position: fixed;
         width: 100%;
-        z-index: $header-z-index;
+/*         z-index: $header-z-index; */
         min-width: $page-min-width;
+    }
+    > .header {
+        z-index: $header-z-index;
+    }
+    > .page_sub_header {
+        z-index: $header-z-index - 1; 
+    }
+    .sub_nav {
+        z-index: $header-z-index - 2; 
     }
 
     .breadcrumbs {
@@ -66,23 +77,23 @@
 
         .jump_to_top {
             div.triangle_up {
-                @include triangle(up, black, 10px, 5px);
+                @include triangle(up, black, 10px, 6px);
                 font-size: 0px;
-                margin: 2px auto 0;
+                margin: 3px auto 0;
             }
 
             background: #AAA;
-            height: 10px;
+            height: 15px;
             line-height: 10px;
             width: 100%;
             @include opacity(0);
             position: absolute;
             top: 0px;
-            vertical-align: middle;
+/*             vertical-align: middle; */
             &.clickable {
                 @include opacity(0.5);
                 &:hover {
-                    @include opacity(1);
+                    @include opacity(.95);
                 }
             }
         }
