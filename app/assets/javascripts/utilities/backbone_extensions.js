@@ -47,6 +47,8 @@ Backbone.sync = function(method, model, options) {
     if (!options.data && model && (method === 'create' || method === 'update' || method === 'patch')) {
         params.contentType = 'application/json';
 
+        console.log ("BExtensions | application/json");
+    
         // Let the model specify its own params
         var string = JSON.stringify(model.toJSON());
         json = $.parseJSON(string);
