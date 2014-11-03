@@ -59,7 +59,7 @@ $needs-attention: $pumpkin;
 $list-hover-color: $accent;
 $list-checked-color: $accent-shade;
 $list-striping-color: $accent-tint;
-$body-background-color: white;
+$body-background-color: #FFFFFF;
 $shaded-background-color: $light-gray;
 $subheader-background-color: $pattens-blue;
 $dialog-header-background: $greyish-blue;
@@ -79,36 +79,42 @@ $link-color: $brand;
 $disabled-text: rgb(147, 154, 159);
 $caret-color: $light-sky-blue;
 
-// Font weights
-$semibold: 600;
-$light: 300;
-// "normal" defaults to 400
 
-//Dimensions
+// ********************
+// LAYOUT
 $header-height: 50px;
 $subheader-height: 60px;
 $subnav-height: 45px;
 $workspace-header-height: $subnav-height + $subheader-height + $header-height;
+
+
+// GLOBAL margin for left and right page margins
+$page-margin-left: 25px;
+$page-margin-right: 25px;
+
+// GLOBAL margin for bottom of pages
+// = distance between bottom of content and bottom of browser window
+$page-margin-bottom: 60px;
+
+// dimensions
 $summary-line-height: 19px;
+
+
+// GLOBAL BORDERs
 $default-border-width: 1px;
 $default-border-radius: 3px;
 
-/* global margin for left and right sides of all pages */
-$page-margin-left: 25px;
-$page-margin-right: 25px;
-/* global margin for bottom of all pages */
-$page-margin-bottom: 60px;
-
-//Specials
 $border-canon: $default-border-width solid $border-color;
 $dark-border-canon: $default-border-width solid $border-color-dark;
 $strong-border-canon: 5px solid $color-text3;
 
 $shadow-canon: 2px 2px 3px 0px $shadow-color;
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/* applied color rules - USE these in component files! */
+// applied color rules - USE these in component files!
 // Background colors
 $data-grid-background-color: #EAEEF2;
 $progress-bar-background-color : #D8DEE6;
@@ -137,8 +143,8 @@ $results-console-border-color: #88A8D3;
 $type-ahead-result-border-color: #A5A6A8;
 
 // Text colors
-$error-text-color: white;
-$error-color: white;
+$error-text-color: #FFFFFF;
+$error-color: #FFFFFF;
 $content-header-link-color: $color-text4;
 
 // Notification colors
@@ -172,7 +178,12 @@ $help-pill-width: 34px;
 $texteditor-min-height: 300px;
 $default-dialog-width: 500px;
 
+
 // z-indices
+
+$header-z-index: 15000;
+$menu-z-index: $header-z-index + 10;
+
 $guts-z-index: 0;
 $link-menu-z-index: $guts-z-index + 1;
 $editor-top-z-index: 10;
@@ -181,8 +192,6 @@ $data-grid-column-header-z-index: 2;
 $data-grid-body-z-index: 20;
 $data-grid-head-z-index: $data-grid-body-z-index + 1;
 
-$header-z-index: 15000;
-$menu-z-index: $header-z-index + 10;
 
 $dialog-overlay-z-index: $menu-z-index + 1;
 $dialog-z-index: $dialog-overlay-z-index + 1;
@@ -191,27 +200,45 @@ $tooltip-z-index: $dialog-z-index + 1;
 
 $toast-closing-z-index: $tooltip-z-index + 1;
 $toast-z-index: $toast-closing-z-index + 1;
+
 $hidden-z-index: -100;
 $select-menu-z-index: 1000000;
 $drag-z-index: 9999;
+
+$popup_filter-z-index: 9999999; //from dataset_table import
+
+$import-date-picker-z-index: 20001; // from import_now
+
+
+$ridiculously-large-z-index: 9999999999999;
+
+
+///////////////////////////////////////////////////////
+// TODO: Reconcile these with above values
+// Typography
+
+$font-family: "Source Sans Pro",Helvetica,Arial,Verdana,sans-serif;
+
+// Font weights
+$semibold: 600;
+$light: 300;
+// "normal" defaults to 400
+
 
 // Font size
 $medium-font: 14px;
 $small-font: 12px;
 $smallest-font: 10px;
 
-// fontsize for the page header element. eg. name of item
+// fontsize for the page (sub) header element. eg. name of item
 $page_header-fontsize: 20.5px;
+
 // fontsize for the primary item name in lists. e.g. workspace, workfile, datasource, etc.
 $listitem_name-fontsize: 16px;
 
-///////////////////////////////////////////////////////
-// TODO: Reconcile these with above values
-/* Typography */
 
 $default-font-color: $color-text3;
 $default-font-size: 14px;
-$font-family: "Source Sans Pro",Helvetica,Arial,Verdana,sans-serif;
 $low-light-type: $gray;
 $mid-light-type: #5f5f5f;
 
@@ -227,14 +254,14 @@ $low-light-link-color: $gray;
 $list-horizontal-divider: 1px solid $border-color;
 $list-vertical-divider: 1px solid $border-color;
 $list-selectable-hover-color: rgba(0,0,0,0.1);
-$list-selectable-selected-color: white;
+$list-selectable-selected-color: #FFFFFF;
 $list-breadcrumb-divider: "\e02f";
 $list-breadcrumb-spacing: 5px;
 $list-breadcrumb-size: 10px;
 $list-border-color-highlighted: $green;
 
 
-/* whitespace */
+// whitespace
 
 $baseLineHeight: 1.5em !default; //must be in em
 $baseFontSize: 15px !default; // must be px
@@ -251,10 +278,10 @@ $guttersH: 15px;
 $guttersV: $baseLineHeight/2em*1rem; // set top and bottom margins to half the base line height so that the total takes up one row of vertical rhythm.
 $spacingHelpers: ($emRatio*$baseLineHeight/3, $emRatio*$baseLineHeight/2, $emRatio*$baseLineHeight); //TODO: convert to px;
 
-/* buttons */
+// BUTTONS
 $button-height : 26px;
 $button-border-color: $border-color;
-$button-background-color : white;
+$button-background-color : #FFFFFF;
 
 $button-border-color-highlighted: $green;
 
@@ -267,8 +294,16 @@ $action-bar-highlighted-background-color: $light-green;
 $action-bar-hovered-item-background-color: #C3ECA0;
 $action-bar-secondary-background-color: $light-blue;
 
-///////////////////////////////////////////////////////
 
+// LOZENGES aka pill
+$default-lozenge-height: 21px;
+
+$lozenge-color-normal: #F1F5F8;
+$lozenge-color-hover: #DDE6F3;
+$lozenge-color-selected: $brand-dark;
+
+
+///////////////////////////////////////////////////////
 // Mixins
 
 
@@ -419,7 +454,7 @@ $action-bar-secondary-background-color: $light-blue;
     @include debugging-mixin;
     font-size: 11px;
     font-weight: $semibold;
-    color: white;
+    color: #FFFFFF;
 }
 
 @mixin secondary-text-normal {
@@ -551,12 +586,12 @@ $action-bar-secondary-background-color: $light-blue;
 /* ********* */
 /* used to generate the pill shapes used in sub nav and right-side nav tabs */
 /* call with: */
-/* min-width: min width of the pill. */
-/* height: height of the pill. if none provided, defaults to 21px. */
+/* min-width: min width of the pill */
+/* height: height of the pill. if none provided, defaults to 21px */
 
-@mixin pill-tab($min-width, $height: 21px) {
+@mixin pill-tab($min-width, $height: $default-lozenge-height) {
     &:hover .lozenge {
-        background: $shaded-background-color;
+        background: $lozenge-color-hover;
         text-decoration: none;
     }
     .lozenge {
@@ -567,11 +602,13 @@ $action-bar-secondary-background-color: $light-blue;
     }
 
     &.selected {
-        &:hover .lozenge { background: $brand-dark; }
+        &:hover .lozenge {
+            background: $lozenge-color-selected;
+        }
 
         .lozenge {
-            background: $brand-dark;
-            color: white;
+            background: $lozenge-color-selected;
+            color: #FFFFFF;
         }
     }
 }
