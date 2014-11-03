@@ -72,7 +72,7 @@ chorus.views.DatabaseSidebarList = chorus.views.Base.extend({
 
     closeQtipOnScroll: function() {
         chorus.page && chorus.page.sidebar && chorus.page.sidebar.bind("scroll", _.bind(function() {
-            $(".hover").removeClass("hover");
+            $("mouseenter mouseleave").removeClass("hover");
             this.closeQtip();
         }, this));
     },

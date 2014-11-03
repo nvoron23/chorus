@@ -25,7 +25,7 @@ chorus.views.WorkfileVersionList = chorus.views.Base.extend({
 
     navigateToVersion: function(e) {
         e.preventDefault();
-        var versionId = parseInt($(e.target).parents("a").andSelf().attr("data-version-id"), 10);
+        var versionId = parseInt($(e.target).parents("a").addBack().attr("data-version-id"), 10);
         chorus.PageEvents.trigger("workfileVersion:changed", versionId);
     }
 });
