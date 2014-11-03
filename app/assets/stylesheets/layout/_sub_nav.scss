@@ -15,7 +15,6 @@ $sub_nav-lozenge-height: 23px;
 
     li {
         display: inline;
-/*         float: left; */
         padding: 0 10px 0 0;
         a {
             display: inline-block;
@@ -26,8 +25,7 @@ $sub_nav-lozenge-height: 23px;
     }
     /* specials for subnav */
     .lozenge {
-        background-color: #F5F7F8;
-        /* color: $color-text2; */
+        background-color: $lozenge-color-normal;
     }
     @include after-clearfix;
 }
