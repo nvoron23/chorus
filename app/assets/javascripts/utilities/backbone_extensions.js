@@ -7,6 +7,7 @@ consoleIterateValues = function (obj) {
     }
 };
 
+
 var methodMap = {
     'create': 'POST',
     'update': 'PUT',
