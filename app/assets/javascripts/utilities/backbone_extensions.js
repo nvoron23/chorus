@@ -1,5 +1,4 @@
-// debugging routine
-consoleIterateValues = function (obj) {
+function consoleIterateValues (obj) {
     var keys = Object.keys(obj);
 
     for (var i = 0; i < keys.length; i++) {
@@ -7,7 +6,13 @@ consoleIterateValues = function (obj) {
         console.log ( i + "->" + val);
     }
 }
-// end debugging routine
+
+var methodMap = {
+    'create': 'POST',
+    'update': 'PUT',
+    'delete': 'DELETE',
+    'read'  : 'GET'
+};
 
 // override for default backbone.sync routine
 Backbone.sync = function(method, model, options) {
@@ -17,8 +22,10 @@ Backbone.sync = function(method, model, options) {
     console.log ("BExtensions | originalOptions ->" + originalOptions);
     consoleIterateValues(originalOptions);
     console.log ("end originalOptions ---"); 
-    console.log ("BExtensions | originalOptions ->" + options.method);   
+    console.log ("BExtensions | options.method ->" + options.method);
+    console.log ("end options.method ---");
     console.log ("BExtensions | method ->" + method);
+    console.log ("end method ---");
     
     var type = methodMap[method];
 
@@ -47,8 +54,6 @@ Backbone.sync = function(method, model, options) {
     if (!options.data && model && (method === 'create' || method === 'update' || method === 'patch')) {
         params.contentType = 'application/json';
 
-        console.log ("BExtensions | application/json");
-    
         // Let the model specify its own params
         var string = JSON.stringify(model.toJSON());
         json = $.parseJSON(string);
@@ -60,24 +65,25 @@ Backbone.sync = function(method, model, options) {
 
     // For older servers, emulate JSON by encoding the request into an HTML-form
     if (options.emulateJSON) {
-      params.contentType = 'application/x-www-form-urlencoded';
-      params.data = params.data ? {model: params.data} : {};
-      // console.log ("BExtensions | in options.emulateHTTP data ->" + params.data);
+        params.contentType = 'application/x-www-form-urlencoded';
+        params.data = params.data ? {model: params.data} : {};
+        
+        console.log ("BExtensions | in options.emulateHTTP data ->" + params.data);
     }
 
     // For older servers, emulate HTTP by mimicking the HTTP method with `_method`
     // And an `X-HTTP-Method-Override` header
     if (options.emulateHTTP && (type === 'PUT' || type === 'DELETE' || type === 'PATCH')) {
-      params.type = 'POST';
 
-//       console.log ("BExtensions | in options.emulateHTTP post ->" + params.type);
-
-      if (options.emulateJSON) params.data._method = type;
-      var beforeSend = options.beforeSend;
-      options.beforeSend = function(xhr) {
-        xhr.setRequestHeader('X-HTTP-Method-Override', type);
-        if (beforeSend) return beforeSend.apply(this, arguments);
-      };
+        params.type = 'POST';
+        console.log ("BExtensions | in options.emulateHTTP post ->" + params.type);
+                
+        if (options.emulateJSON) params.data._method = type;
+        var beforeSend = options.beforeSend;
+        options.beforeSend = function(xhr) {
+            xhr.setRequestHeader('X-HTTP-Method-Override', type);
+            if (beforeSend) return beforeSend.apply(this, arguments);
+        };
     }
 
     // Don't process data on a non-GET request
@@ -100,35 +106,27 @@ Backbone.sync = function(method, model, options) {
         return this.uploadObj.submit();
     } else {
         console.log ("BExtensions | else");
-
         var xhr = Backbone.ajax(_.extend(params, options));
+        console.log ("B.Extensions | else 2");
         model.trigger('request', model, xhr, options);
-
-        console.log ("BExtensions | xhr->");
-        consoleIterateValues(xhr);
-        console.log ("end xhr ---");
+          
+//        console.log ("BExtensions | xhr->");
+//        consoleIterateValues(xhr);        
+//        console.log ("end xhr ---");      
 
         console.log ("BExtensions | options ->");
         consoleIterateValues(options);
         console.log ("end options ---");
         console.log ("   ");
-
-        //console.log ("BExtensions | model->");
-        //consoleIterateValues(model);        
-        //console.log ("end model ---");
-        //console.log ("   ");
+        
+//       console.log ("BExtensions | model->");
+//       consoleIterateValues(model);        
+//        console.log ("end model ---");
+//        console.log ("   ");
 
         return xhr;
     }
 };
-
-var methodMap = {
-    'create': 'POST',
-    'update': 'PUT',
-    'delete': 'DELETE',
-    'read'  : 'GET'
-};
-
 
 // This function overrides loadUrl from Backbone to strip off a trailing slash
 //
