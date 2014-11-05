@@ -1,3 +1,8 @@
+@import "_browser_support";
+
+$tab_control-lozenge-min-width: 40px;
+$tab_control-lozenge-height: 21px;
+
 .primary_action_panel {
     .panel {
         @include sidebar-panel;
@@ -7,22 +12,29 @@
 
 .tab_control {
     @include sidebar-panel;
+
     .tabs {
-        $pill-padding: 0px;
+        $pill-padding-vertical: 0px;    
+        $pill-padding-horizontal: 0px;
 
-        text-align: center;
-        padding: 0 $pill-padding;
+        padding: 0;
         border-bottom: $border-canon;
-        min-height: 40px;
+        height: 40px;
+        text-align: center;
         line-height: 40px;
-
         background: $accent;
-        .tab {
-            padding: 0 $pill-padding;
-            cursor: pointer;
+
+        li {
             display: inline;
-            @include pill-tab(40px);
+            padding: $pill-padding-vertical $pill-padding-horizontal;
+            cursor: pointer;
+            @include pill-tab($tab_control-lozenge-min-width, $tab_control-lozenge-height);
+            // specials for these sidebar tabs        
+            @include pill-tab-colors ($lozenge-color-normal-dark, $lozenge-color-hover-dark, $lozenge-color-selected-dark);
         }
     }
 
+    .chorus_search_container {
+        margin: 2px 10px 2px 10px;
+    }
 }

@@ -106,7 +106,7 @@ describe("chorus.views.DatasetSidebar", function() {
 
                 it("renders an activity list inside the tabbed area", function() {
                     expect(this.view.tabs.activity).toBeA(chorus.views.ActivityList);
-                    expect(this.view.tabs.activity.el).toBe(this.view.$(".tabbed_area .activity_list")[0]);
+                    expect(this.view.tabs.activity.el).toBe(this.view.$(".tabbed_content_area .activity_list")[0]);
                 });
             });
         });

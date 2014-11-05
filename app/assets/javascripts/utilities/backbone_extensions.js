@@ -1,9 +1,12 @@
-var methodMap = {
-    'create': 'POST',
-    'update': 'PUT',
-    'delete': 'DELETE',
-    'read'  : 'GET'
-};
+consoleIterateValues = function (obj) {
+    var keys = Object.keys(obj);
+
+    for (var i = 0; i < keys.length; i++) {
+        var val = obj[keys[i]];
+        console.log ( i + "->" + val);
+    }
+}
+
 
 Backbone.sync = function(method, model, options) {
     var originalOptions = _.clone(options || {});
@@ -11,13 +14,15 @@ Backbone.sync = function(method, model, options) {
 
     var type = methodMap[method];
 
+    console.log ("BExtensions | type1 ->" + type);
+    
     // Default options, unless specified.
     _.defaults(options || (options = {}), {
         emulateHTTP: Backbone.emulateHTTP,
         emulateJSON: Backbone.emulateJSON
     });
 
-    // Default JSON-request options.
+    // Default JSON-request options
     var params = {type: type, dataType: 'json'};
 
     // Ensure that we have a URL.
@@ -29,7 +34,7 @@ Backbone.sync = function(method, model, options) {
         /*global urlError:false */
     }
 
-    // Ensure that we have the appropriate request data.
+    // Ensure that we have the appropriate request data
     var json;
     if (!options.data && model && (method === 'create' || method === 'update' || method === 'patch')) {
         params.contentType = 'application/json';
@@ -47,12 +52,17 @@ Backbone.sync = function(method, model, options) {
     if (options.emulateJSON) {
         params.contentType = 'application/x-www-form-urlencoded';
         params.data = params.data ? {model: params.data} : {};
+        
+        console.log ("BExtensions | in options.emulateHTTP data ->" + params.data);
     }
 
     // For older servers, emulate HTTP by mimicking the HTTP method with `_method`
     // And an `X-HTTP-Method-Override` header.
     if (options.emulateHTTP && (type === 'PUT' || type === 'DELETE' || type === 'PATCH')) {
+
         params.type = 'POST';
+        console.log ("BExtensions | in options.emulateHTTP post ->" + params.type);
+                
         if (options.emulateJSON) params.data._method = type;
         var beforeSend = options.beforeSend;
         options.beforeSend = function(xhr) {
@@ -66,20 +76,50 @@ Backbone.sync = function(method, model, options) {
         params.processData = false;
     }
 
+    console.log ("BExtensions | type(2)");
+        
     // Make the request, allowing the user to override any Ajax options.
     if (this.uploadObj && method === "create") {
+        console.log ("B.Extensions | it is create");
+        
         var uploadOptions = $(this.uploadObj.form).find("input[type=file]").data("fileupload").options;
         _.each(['success', 'error', 'url', 'type', 'dataType'], function(fieldName) {
             uploadOptions[fieldName] = params[fieldName];
         });
         uploadOptions.formData = json;
+        console.log ("BExtensions | uploadOptions.formData ->" + uploadOptions.formData);
         return this.uploadObj.submit();
     } else {
+        console.log ("BExtensions | else");
         var xhr = Backbone.ajax(_.extend(params, options));
+        console.log ("B.Extensions | else 2");
         model.trigger('request', model, xhr, options);
+          
+        console.log ("BExtensions | xhr->");
+        consoleIterateValues(xhr);        
+        console.log ("end xhr ---");      
+
+        console.log ("BExtensions | options ->");
+        consoleIterateValues(options);
+        console.log ("end options ---");
+        console.log ("   ");
+        
+        console.log ("BExtensions | model->");
+        consoleIterateValues(model);        
+        console.log ("end model ---");
+        console.log ("   ");
+
         return xhr;
     }
 };
+
+var methodMap = {
+    'create': 'POST',
+    'update': 'PUT',
+    'delete': 'DELETE',
+    'read'  : 'GET'
+};
+
 
 // This function overrides loadUrl from Backbone to strip off a trailing
 // slash.
@@ -179,5 +219,3 @@ Backbone.Model = (function(Model) {
     });
 
 })(Backbone);
-
-

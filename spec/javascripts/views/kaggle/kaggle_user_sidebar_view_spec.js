@@ -31,7 +31,7 @@ describe("chorus.views.KaggleUserSidebar", function () {
 
         it("renders information inside the tabbed area", function () {
             expect(this.view.tabs.information).toBeA(chorus.views.KaggleUserInformation);
-            expect(this.view.tabs.information.el).toBe(this.view.$(".tabbed_area .kaggle_user_information")[0]);
+            expect(this.view.tabs.information.el).toBe(this.view.$(".tabbed_content_area .kaggle_user_information")[0]);
         });
     });
 });

@@ -1,13 +1,14 @@
 input.chorus_search {
-    @include border-radius(5px);
-    padding: 2px 20px 2px 29px;
-    background: url("/images/search-icon.png") no-repeat 9px 3px;
-    outline: none;
+    margin: 0;
+    padding: 2px 20px 2px 26px;
+    background: url("/images/search-icon.png") no-repeat 5px 4px;
+//     outline: none;
     background-color: #FBFBFB;
+    @include border-radius(5px);
     border-color: $border-color;
     border-top-color: #FFFFFF;
-    border-left-color: #FFFFFFF;
-    margin: 0;
+    border-left-color: #FFFFFF;
+
     font-size: 14px;
     line-height: 18px;
     vertical-align: top;
@@ -23,9 +24,9 @@ input.chorus_search {
 a.chorus_search_clear {
     position: absolute;
     top: 50%;
-    margin-top: -9px;
-    right: 10px;
-    line-height: 12px;
+    margin-top: -14px;
+    right: 8px;
+//    line-height: 12px;
     i {
         font-size: 9px;
         color: $disabled-text;

@@ -1128,6 +1128,9 @@
   Backbone.sync = function(method, model, options) {
     var type = methodMap[method];
 
+    console.log ("Backbone ->" + type);
+    
+    
     // Default options, unless specified.
     _.defaults(options || (options = {}), {
       emulateHTTP: Backbone.emulateHTTP,

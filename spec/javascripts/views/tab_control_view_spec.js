@@ -43,10 +43,10 @@ describe("chorus.views.TabControl", function() {
     });
 
     it("renders each view inside of its 'tabbed area'", function() {
-        expect(this.view.$(".tabbed_area div").length).toBe(3);
-        expect(this.view.$(".tabbed_area div").eq(0)).toContainText("tabText1");
-        expect(this.view.$(".tabbed_area div").eq(1)).toContainText("tabText2");
-        expect(this.view.$(".tabbed_area div").eq(2)).toContainText("tabText3");
+        expect(this.view.$(".tabbed_content_area div").length).toBe(3);
+        expect(this.view.$(".tabbed_content_area div").eq(0)).toContainText("tabText1");
+        expect(this.view.$(".tabbed_content_area div").eq(1)).toContainText("tabText2");
+        expect(this.view.$(".tabbed_content_area div").eq(2)).toContainText("tabText3");
     });
 
     it("calls #delegateEvents on each view (bc otherwise the events of a subview don't propogate to its subviews)", function() {
@@ -62,9 +62,9 @@ describe("chorus.views.TabControl", function() {
     });
 
     it("makes the first tabbed area visible", function() {
-        expect(this.view.$(".tabbed_area div").length).toBe(3);
-        expect(this.view.$(".tabbed_area div:visible").length).toBe(1);
-        expect(this.view.$('.tabbed_area div').eq(0)).toBeVisible();
+        expect(this.view.$(".tabbed_content_area div").length).toBe(3);
+        expect(this.view.$(".tabbed_content_area div:visible").length).toBe(1);
+        expect(this.view.$('.tabbed_content_area div').eq(0)).toBeVisible();
     });
 
     context("clicking on a tab", function() {
@@ -92,9 +92,9 @@ describe("chorus.views.TabControl", function() {
             expect(this.view.$('li[data-name=configuration]')).not.toHaveClass('selected');
         });
 
-        it("unhides the appropriate tabbed_area and hides the others", function() {
-            expect(this.view.$(".tabbed_area div:visible").length).toBe(1);
-            expect(this.view.$('.tabbed_area div').eq(1)).toBeVisible();
+        it("unhides the appropriate tabbed_content_area and hides the others", function() {
+            expect(this.view.$(".tabbed_content_area div:visible").length).toBe(1);
+            expect(this.view.$('.tabbed_content_area div').eq(1)).toBeVisible();
         });
 
         context("calling render a second time", function() {
@@ -115,10 +115,10 @@ describe("chorus.views.TabControl", function() {
                 expect(this.view.$('li[data-name=statistics]')).toHaveClass('selected');
             });
 
-            it("keeps the correct tabbed_area visibilities", function() {
-                expect(this.view.$(".tabbed_area div").length).toBe(3);
-                expect(this.view.$(".tabbed_area div:visible").length).toBe(1);
-                expect(this.view.$('.tabbed_area div').eq(1)).toBeVisible();
+            it("keeps the correct tabbed_content_area visibilities", function() {
+                expect(this.view.$(".tabbed_content_area div").length).toBe(3);
+                expect(this.view.$(".tabbed_content_area div:visible").length).toBe(1);
+                expect(this.view.$('.tabbed_content_area div').eq(1)).toBeVisible();
             });
         });
     });

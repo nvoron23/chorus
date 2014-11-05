@@ -156,7 +156,7 @@ describe("chorus.views.JobSidebar", function () {
 
             it("renders an activity list inside the tabbed area", function() {
                 expect(this.view.tabs.activity).toBeA(chorus.views.ActivityList);
-                expect(this.view.$(".tabbed_area .activity_list")[0]).toBe(this.view.tabs.activity.el);
+                expect(this.view.$(".tabbed_content_area .activity_list")[0]).toBe(this.view.tabs.activity.el);
             });
         });
     });

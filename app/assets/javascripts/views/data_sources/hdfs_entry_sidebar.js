@@ -28,10 +28,10 @@ chorus.views.HdfsEntrySidebar = chorus.views.Sidebar.extend({
         this._super("postRender");
         if (this.resource && this.resource.get("isDir")) {
             this.$(".tab_control").addClass("hidden");
-            this.$(".tabbed_area").addClass("hidden");
+            this.$(".tabbed_content_area").addClass("hidden");
         } else {
             this.$(".tab_control").removeClass("hidden");
-            this.$(".tabbed_area").removeClass("hidden");
+            this.$(".tabbed_content_area").removeClass("hidden");
         }
     },
 

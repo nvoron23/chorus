@@ -29,10 +29,10 @@ body .ui-draggable-dragging {
     right: 0;
     bottom: 0;
 
-    #help {
-        top: 1px;
-        left: $sidebar-width - $help-pill-width - $guts-padding + $sidebar-padding-x;
-    }
+//    #help {
+//        top: 1px;
+//        left: $sidebar-width - $help-pill-width - $guts-padding + $sidebar-padding-x;
+//    }
 
     .spacer {
         height: $breadcrumbs-height + $padding-y;
@@ -120,7 +120,7 @@ body .ui-draggable-dragging {
             @include dark-sidebar-panel;
         }
 
-        .tabbed_area {
+        .tabbed_content_area {
             .context {
                 font-size: 14px;
 
