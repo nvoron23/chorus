@@ -7,7 +7,6 @@ function consoleIterateValues (obj) {
     }
 };
 
-
 var methodMap = {
     'create': 'POST',
     'update': 'PUT',
@@ -15,18 +14,25 @@ var methodMap = {
     'read'  : 'GET'
 };
 
+// override for default backbone.sync routine
 Backbone.sync = function(method, model, options) {
     var originalOptions = _.clone(options || {});
     method = (options && options.method) || method;
 
+    console.log ("BExtensions | originalOptions ->" + originalOptions);
+    consoleIterateValues(originalOptions);
+    console.log ("end originalOptions ---"); 
+    console.log ("BExtensions | originalOptions ->" + options.method);   
+    console.log ("BExtensions | method ->" + method);
+    
     var type = methodMap[method];
 
     console.log ("BExtensions | type1 ->" + type);
     
-    // Default options, unless specified.
+    // Default options, unless specified
     _.defaults(options || (options = {}), {
-        emulateHTTP: Backbone.emulateHTTP,
-        emulateJSON: Backbone.emulateJSON
+      emulateHTTP: Backbone.emulateHTTP,
+      emulateJSON: Backbone.emulateJSON
     });
 
     // Default JSON-request options
@@ -55,7 +61,7 @@ Backbone.sync = function(method, model, options) {
         params.data = JSON.stringify(json);
     }
 
-    // For older servers, emulate JSON by encoding the request into an HTML-form.
+    // For older servers, emulate JSON by encoding the request into an HTML-form
     if (options.emulateJSON) {
         params.contentType = 'application/x-www-form-urlencoded';
         params.data = params.data ? {model: params.data} : {};
@@ -64,7 +70,7 @@ Backbone.sync = function(method, model, options) {
     }
 
     // For older servers, emulate HTTP by mimicking the HTTP method with `_method`
-    // And an `X-HTTP-Method-Override` header.
+    // And an `X-HTTP-Method-Override` header
     if (options.emulateHTTP && (type === 'PUT' || type === 'DELETE' || type === 'PATCH')) {
 
         params.type = 'POST';
@@ -78,14 +84,14 @@ Backbone.sync = function(method, model, options) {
         };
     }
 
-    // Don't process data on a non-GET request.
+    // Don't process data on a non-GET request
     if (params.type !== 'GET' && !options.emulateJSON) {
         params.processData = false;
     }
 
-    console.log ("BExtensions | type(2)");
+    console.log ("BExtensions | (2)");
         
-    // Make the request, allowing the user to override any Ajax options.
+    // Make the request, allowing the user to override any Ajax options
     if (this.uploadObj && method === "create") {
         console.log ("B.Extensions | it is create");
         
@@ -120,9 +126,7 @@ Backbone.sync = function(method, model, options) {
     }
 };
 
-
-// This function overrides loadUrl from Backbone to strip off a trailing
-// slash.
+// This function overrides loadUrl from Backbone to strip off a trailing slash
 //
 // http://localhost/users/ => http://localhost/users
 // http://localhost/users/1/ => http://localhost/users/1
@@ -144,7 +148,7 @@ Backbone.History.prototype.loadUrl = function(fragmentOverride) {
 // It was promptly removed in 1.1.0, but 1.1.x introduces several more breaking changes
 // (no attachment of options to Views and Collection#add,set,reset,remove
 // return the changed model or list of models instead of the collection itself).
-// The below is the 1.0 implementation of Backbone.Model with 'url' removed from modelOptions.
+// The below is the 1.0 implementation of Backbone.Model with 'url' removed from modelOptions
 Backbone.Model = (function(Model) {
     var modelOptions = ['urlRoot', 'collection'];
 
@@ -174,7 +178,7 @@ Backbone.Model = (function(Model) {
 ;(function (Backbone) {
 
     // Find the next object up the prototype chain that has a
-    // different implementation of the method.
+    // different implementation of the method
     function findSuper(attributeName, childObject) {
         var object = childObject;
         while(object && (object[attributeName] === childObject[attributeName])) {
@@ -184,8 +188,8 @@ Backbone.Model = (function(Model) {
     }
 
     // The super method takes two parameters: a method name
-    // and an array of arguments to pass to the overridden method.
-    // This is to optimize for the common case of passing 'arguments'.
+    // and an array of arguments to pass to the overridden method
+    // This is to optimize for the common case of passing 'arguments'
     function _super(methodName, args) {
 
         // Keep track of how far up the prototype chain we have traversed,

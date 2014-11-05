@@ -9,7 +9,7 @@ gem 'cocaine', '0.2.1' # cocaine is a paperclip dependency but new versions of c
 gem 'queue_classic', :github => 'Chorus/queue_classic'
 gem 'clockwork',     :require => false
 gem 'allowy'
-gem 'sunspot_rails', '~> 2.0.0'
+gem 'sunspot_rails'
 gem 'jetpack', :github => 'Chorus/jetpack', :branch => '6c9253195b+chorus', :require => false
 gem 'nokogiri'
 gem 'sequel', '~> 4.0', :require => 'sequel/no_core_ext'
@@ -35,7 +35,18 @@ group :assets do
   gem 'uglifier'
   gem 'yui-compressor'
   gem 'turbo-sprockets-rails3'
-  gem 'jquery-rails', '2.1.4'
+
+#jquery-rails 2.1.4 ==> jquery 1.8.3
+gem 'jquery-rails', '2.1.4'
+
+#jquery-rails 2.2.04 ==> jquery 1.9.0
+#gem 'jquery-rails', '2.2.0'
+
+#jquery-rails 3.1.1 ==> jquery 1.11.1
+# updating to use jquery 1.11.1
+# gem 'jquery-rails', '3.1.1'
+
+  gem 'jquery-migrate-rails'
 end
 
 group :integration do
@@ -71,7 +82,8 @@ group :development, :test, :integration, :packaging, :ci_jasmine, :ci_legacy, :c
   gem 'ci_reporter', '>= 1.8.2'
   gem 'faker'
   gem 'fakeweb'
-  gem 'sunspot_solr', :github => 'taktsoft/sunspot', :ref => '78717a33894271d012682dbe8902458badb0ca63' # https://github.com/sunspot/sunspot/pull/267
+  #gem 'sunspot_solr', :github => 'taktsoft/sunspot', :ref => '78717a33894271d012682dbe8902458badb0ca63' # https://github.com/sunspot/sunspot/pull/267
+  gem 'sunspot_solr'
   gem 'backbone_fixtures_rails', :github => 'charleshansen/backbone_fixtures_rails'
   gem 'rspec_api_documentation', :github => 'Chorus/rspec_api_documentation', :require => false
 end

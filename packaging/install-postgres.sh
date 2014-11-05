@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-POSTGRES_VERSION="9.2.4"
+POSTGRES_VERSION="9.2.9"
 
 wget http://ftp.postgresql.org/pub/source/v$POSTGRES_VERSION/postgresql-$POSTGRES_VERSION.tar.gz
 tar xzf postgresql-$POSTGRES_VERSION.tar.gz
