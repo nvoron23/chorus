@@ -22,8 +22,10 @@ Backbone.sync = function(method, model, options) {
     console.log ("BExtensions | originalOptions ->" + originalOptions);
     consoleIterateValues(originalOptions);
     console.log ("end originalOptions ---"); 
-    console.log ("BExtensions | originalOptions ->" + options.method);   
+    console.log ("BExtensions | options.method ->" + options.method);
+    console.log ("end options.method ---");
     console.log ("BExtensions | method ->" + method);
+    console.log ("end method ---");
     
     var type = methodMap[method];
 
@@ -108,9 +110,9 @@ Backbone.sync = function(method, model, options) {
         console.log ("B.Extensions | else 2");
         model.trigger('request', model, xhr, options);
           
-        console.log ("BExtensions | xhr->");
-        consoleIterateValues(xhr);        
-        console.log ("end xhr ---");      
+//        console.log ("BExtensions | xhr->");
+//        consoleIterateValues(xhr);        
+//        console.log ("end xhr ---");      
 
         console.log ("BExtensions | options ->");
         consoleIterateValues(options);
