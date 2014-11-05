@@ -5,8 +5,14 @@ consoleIterateValues = function (obj) {
         var val = obj[keys[i]];
         console.log ( i + "->" + val);
     }
-}
+};
 
+var methodMap = {
+    'create': 'POST',
+    'update': 'PUT',
+    'delete': 'DELETE',
+    'read'  : 'GET'
+};
 
 Backbone.sync = function(method, model, options) {
     var originalOptions = _.clone(options || {});
@@ -111,13 +117,6 @@ Backbone.sync = function(method, model, options) {
 
         return xhr;
     }
-};
-
-var methodMap = {
-    'create': 'POST',
-    'update': 'PUT',
-    'delete': 'DELETE',
-    'read'  : 'GET'
 };
 
 
