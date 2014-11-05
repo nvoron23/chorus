@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem install bundler
 
 gem 'rails', '3.2.18'
 
